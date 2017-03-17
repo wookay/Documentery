@@ -60,6 +60,13 @@ require(['jquery', 'highlight', 'highlight-julia'], function($, hljs) {
             });
         }
         hljs.initHighlighting();
+
+        if ($("nav.toc").css('position') == 'relative') {
+            $("nav.toc").toggleClass('off')
+        }
+        $("article ul.float-right a.btn").click(function() {
+            $("nav.toc").toggleClass('off')
+        });
     })
 
 })

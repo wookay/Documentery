@@ -135,6 +135,10 @@ nav.toc {
     box-shadow: inset -14px 0px 5px -12px rgb(210,210,210);
 }
 
+nav.toc.off {
+     display: none;
+}
+
 nav.toc .logo {
     margin: 0 auto;
     display: block;
@@ -258,13 +262,22 @@ article > header nav li {
     padding-right: 0.2em;
 }
 
-article > header nav li:before {
+article > header nav ul.float-left li:before {
     content: "»";
     padding-right: 0.2em;
 }
 
-article > header .edit-page {
+article > header nav ul.float-right {
     float: right;
+}
+
+article > header nav ul.float-right a.btn {
+    display: none;
+}
+
+article > header nav ul.float-right i.fa-bars {
+    text-align: center;
+    width: 3em;
 }
 
 article > footer {}
@@ -409,5 +422,9 @@ article section.docstring a.source-link {
 
     article {
         margin-left: 0em;
+    }
+
+    article ul.float-right a.btn {
+        display: block !important;
     }
 }
