@@ -61,16 +61,16 @@ require(['jquery', 'highlight', 'highlight-julia'], function($, hljs) {
         }
         hljs.initHighlighting();
 
-        var navtoc = $("nav.toc");
-        if (navtoc.css('overflow-y') == 'scroll') {
+        // mobile
+        if ($("div.topbar").css('display') == 'block') {
+            var navtoc = $("nav.toc");
             var navtoc_current_top = $('nav.toc li.current').offset().top;
-            navtoc.toggleClass('off');
             $("nav.toc li.current a.toctext").click(function(ev) {
-                navtoc.toggleClass('off');
+                navtoc.toggleClass('show');
             });
-            $("div.navbar a.btn").click(function() {
-                navtoc.toggleClass('off');
-                if (!navtoc.hasClass('off')) {
+            $("div.topbar ul.float-right a.btn").click(function() {
+                navtoc.toggleClass('show');
+                if (navtoc.hasClass('show')) {
                     navtoc.animate({scrollTop: navtoc_current_top}, 0);
                 }
             });
