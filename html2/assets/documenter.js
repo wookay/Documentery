@@ -61,11 +61,16 @@ require(['jquery', 'highlight', 'highlight-julia'], function($, hljs) {
         }
         hljs.initHighlighting();
 
-        if ($("nav.toc").css('position') == 'relative') {
-            $("nav.toc").toggleClass('off')
+        var navtoc = $("nav.toc");
+        var navtoc_current_top = $('nav.toc li.current').offset().top;
+        if (navtoc.css('overflow-y') == 'scroll') {
+            navtoc.toggleClass('off');
         }
         $("article ul.float-right a.btn").click(function() {
-            $("nav.toc").toggleClass('off')
+            navtoc.toggleClass('off');
+            if (!navtoc.hasClass('off')) {
+                navtoc.animate({scrollTop: navtoc_current_top}, 0);
+            }
         });
     })
 

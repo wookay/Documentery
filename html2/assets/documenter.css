@@ -136,7 +136,7 @@ nav.toc {
 }
 
 nav.toc.off {
-     display: none;
+    display: none;
 }
 
 nav.toc .logo {
@@ -417,11 +417,12 @@ article section.docstring a.source-link {
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
     nav.toc {
-        position: relative;
+        overflow-y: scroll;
     }
 
     article {
         margin-left: 0em;
+        padding: 0.7em;
     }
 
     article ul.float-right a.btn {
