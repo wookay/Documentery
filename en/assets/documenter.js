@@ -62,19 +62,17 @@ require(['jquery', 'highlight', 'highlight-julia'], function($, hljs) {
         hljs.initHighlighting();
 
         // mobile
-        if ($("div.topbar").css('display') == 'block') {
-            var navtoc = $("nav.toc");
-            var navtoc_current_top = $('nav.toc li.current').offset().top;
-            $("nav.toc li.current a.toctext").click(function(ev) {
-                navtoc.toggleClass('show');
-            });
-            $("div.topbar ul.float-right a.btn").click(function() {
-                navtoc.toggleClass('show');
-                if (navtoc.hasClass('show')) {
-                    navtoc.animate({scrollTop: navtoc_current_top}, 0);
-                }
-            });
-        }
+        var navtoc = $("nav.toc");
+        var navtoc_current_top = $('nav.toc li.current').offset().top;
+        $("nav.toc li.current a.toctext").click(function(ev) {
+            navtoc.toggleClass('show');
+        });
+        $("div.topbar ul.float-right a.btn").click(function() {
+            navtoc.toggleClass('show');
+            if (navtoc.hasClass('show')) {
+                navtoc.animate({scrollTop: navtoc_current_top}, 0);
+            }
+        });
     })
 
 })

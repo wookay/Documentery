@@ -471,22 +471,18 @@ article section.docstring a.source-link {
         z-index: 2;
         width: 80%;
         -webkit-overflow-scrolling: touch;
-        left: -768px;
         -webkit-transition-property: left; /* Safari */
         -webkit-transition-duration: 0.3s; /* Safari */
-        -webkit-transition-timing-function: ease-in; /* Safari */
         transition-property: left;
         transition-duration: 0.3s;
+        left: -768px;
+        -webkit-transition-timing-function: ease-in; /* Safari */
         transition-timing-function: ease-in;
     }
 
     nav.toc.show {
         left: 0rem;
-        -webkit-transition-property: left; /* Safari */
-        -webkit-transition-duration: 0.3s; /* Safari */
         -webkit-transition-timing-function: ease-out; /* Safari */
-        transition-property: left;
-        transition-duration: 0.3s;
         transition-timing-function: ease-out;
     }
 
