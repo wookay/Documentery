@@ -135,10 +135,6 @@ nav.toc {
     box-shadow: inset -14px 0px 5px -12px rgb(210,210,210);
 }
 
-nav.toc.off {
-     display: none;
-}
-
 nav.toc .logo {
     margin: 0 auto;
     display: block;
@@ -241,6 +237,10 @@ nav.toc li.current > .toctext {
     background-color: white;
 }
 
+div.topbar {
+    display: none;
+}
+
 article {
     margin-left: 20em;
     min-width: 20em;
@@ -262,22 +262,13 @@ article > header nav li {
     padding-right: 0.2em;
 }
 
-article > header nav ul.float-left li:before {
+article > header nav li:before {
     content: "»";
     padding-right: 0.2em;
 }
 
-article > header nav ul.float-right {
+article > header .edit-page {
     float: right;
-}
-
-article > header nav ul.float-right a.btn {
-    display: none;
-}
-
-article > header nav ul.float-right i.fa-bars {
-    text-align: center;
-    width: 3em;
 }
 
 article > footer {}
@@ -415,16 +406,100 @@ article section.docstring a.source-link {
     padding: 0;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
+    div.topbar {
+        display: block; /* is mobile */
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        height: 2.5em;
+        overflow: hidden;
+        background-color: white;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),
+                    0 1px 5px 0 rgba(0,0,0,.12),
+                    0 3px 1px -2px rgba(0,0,0,.2);
+        z-index: 1;
+    }
+
+    div.topbar div.container {
+        height: 100%;
+        width: 100vw;
+    }
+
+    div.topbar ul {
+        font-weight: bold;
+        line-height: 2.5em;
+        list-style: none;
+    }
+
+    div.topbar ul.float-left {
+        float: left;
+        font-size: smaller;
+        width: 60%;
+        padding-left: 1em;
+        margin-top: 0.3em;
+    }
+
+    div.topbar ul.float-left li {
+        white-space: nowrap;
+        display: inline-block;
+    }
+
+    div.topbar ul.float-right {
+        float: right;
+        padding: 0 0 0 0;
+        margin-top: 0.1em;
+    }
+
+    div.topbar ul.float-right i.fa-bars {
+        width: 1em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        text-align: right;
+        font-size: x-large;
+        background-color: white;
+    }
+
+    div.main div.container {
+        margin-top: 1em;
+    }
+
     nav.toc {
-        position: relative;
+        position: fixed;
+        overflow-y: scroll;
+        z-index: 2;
+        width: 80%;
+        left: -768px;
+        -webkit-transition-property: left; /* Safari */
+        -webkit-transition-duration: 0.3s; /* Safari */
+        -webkit-transition-timing-function: ease-in; /* Safari */
+        transition-property: left;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in;
+    }
+
+    nav.toc.show {
+        left: 0rem;
+        -webkit-transition-property: left; /* Safari */
+        -webkit-transition-duration: 0.3s; /* Safari */
+        -webkit-transition-timing-function: ease-out; /* Safari */
+        transition-property: left;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-out;
     }
 
     article {
-        margin-left: 0em;
+        padding-top: -3em;
+        padding-left: 0.9em;
+        padding-right: 0.9em;
+        margin-left: 0;
     }
 
-    article ul.float-right a.btn {
-        display: block !important;
+    article [id]:before {
+        display: inline-block;
+        content: "";
+        padding-top: 5em;
+        margin-top: -5em;
     }
 }

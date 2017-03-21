@@ -428,15 +428,15 @@ article section.docstring a.source-link {
     }
 
     div.topbar ul {
-        list-style: none;
-        line-height: 2.5em;
         font-weight: bold;
+        line-height: 2.5em;
+        list-style: none;
     }
 
     div.topbar ul.float-left {
         float: left;
-        width: 60%;
         font-size: smaller;
+        width: 60%;
         padding-left: 1em;
         margin-top: 0.3em;
     }
@@ -453,10 +453,10 @@ article section.docstring a.source-link {
     }
 
     div.topbar ul.float-right i.fa-bars {
-        text-align: right;
         width: 1em;
         padding-left: 0.5em;
         padding-right: 0.5em;
+        text-align: right;
         font-size: x-large;
         background-color: white;
     }
@@ -470,6 +470,7 @@ article section.docstring a.source-link {
         overflow-y: scroll;
         z-index: 2;
         width: 80%;
+        -webkit-overflow-scrolling: touch;
         left: -768px;
         -webkit-transition-property: left; /* Safari */
         -webkit-transition-duration: 0.3s; /* Safari */
@@ -490,10 +491,10 @@ article section.docstring a.source-link {
     }
 
     article {
-        margin-left: 0;
         padding-top: -3em;
         padding-left: 0.9em;
         padding-right: 0.9em;
+        margin-left: 0;
     }
 
     article [id]:before {
