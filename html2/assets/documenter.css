@@ -135,10 +135,6 @@ nav.toc {
     box-shadow: inset -14px 0px 5px -12px rgb(210,210,210);
 }
 
-nav.toc.off {
-    display: none;
-}
-
 nav.toc .logo {
     margin: 0 auto;
     display: block;
@@ -241,6 +237,10 @@ nav.toc li.current > .toctext {
     background-color: white;
 }
 
+div.navbar {
+    display: none;
+}
+
 article {
     margin-left: 20em;
     min-width: 20em;
@@ -262,22 +262,13 @@ article > header nav li {
     padding-right: 0.2em;
 }
 
-article > header nav ul.float-left li:before {
+article > header nav li:before {
     content: "»";
     padding-right: 0.2em;
 }
 
-article > header nav ul.float-right {
+article > header .edit-page {
     float: right;
-}
-
-article > header nav ul.float-right a.btn {
-    display: none;
-}
-
-article > header nav ul.float-right i.fa-bars {
-    text-align: center;
-    width: 3em;
 }
 
 article > footer {}
@@ -418,14 +409,58 @@ article section.docstring a.source-link {
 @media only screen and (min-width: 320px) and (max-width: 768px) {
     nav.toc {
         overflow-y: scroll;
+        width: 80%;
+        z-index: 2;
+    }
+
+    nav.toc.off {
+        display: none;
+    }
+
+    div.navbar {
+        display: block;
+        position: fixed;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),
+                    0 1px 5px 0 rgba(0,0,0,.12),
+                    0 3px 1px -2px rgba(0,0,0,.2);
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: white;
+        z-index: 1;
+    }
+
+    div.navbar ul {
+        list-style: none;
+        font-size: 1.25em;
+        font-weight: bold;
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
+    }
+
+    div.navbar ul.float-left {
+        float: left;
+        width: 60%;
+    }
+
+    div.navbar ul.float-right {
+        float: right;
+    }
+
+    div.navbar ul.float-right i.fa-bars {
+        text-align: center;
+        width: 3em;
     }
 
     article {
+        padding-left: 0.8em;
+        padding-right: 0.8em;
+        margin-top: 1em;
         margin-left: 0em;
-        padding: 0.7em;
+        margin-bottom: 0em;
     }
 
-    article ul.float-right a.btn {
-        display: block !important;
+    article hr {
+        margin-top: 1.5em;
     }
 }
