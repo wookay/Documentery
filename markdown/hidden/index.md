@@ -47,7 +47,7 @@ makedocs(
 ```
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/fec8ac09c85a58a0c8894006601ec8561c55a8a7/src/Documenter.jl#L165' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/src/Documenter.jl#L165' class='documenter-source'>source</a><br>
 
 
 ```julia
@@ -74,5 +74,5 @@ makedocs(
 ```
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/fec8ac09c85a58a0c8894006601ec8561c55a8a7/src/Documenter.jl#L189' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/src/Documenter.jl#L189' class='documenter-source'>source</a><br>
 

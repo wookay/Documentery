@@ -29,7 +29,7 @@ in that order.
 f_1
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/fec8ac09c85a58a0c8894006601ec8561c55a8a7/test/examples/pages/e.jl#L5' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/e.jl#L5' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.Pages.E.f_2-Tuple{Any}' href='#AutoDocs.Pages.E.f_2-Tuple{Any}'>#</a>
 **`AutoDocs.Pages.E.f_2`** &mdash; *Method*.
@@ -39,7 +39,7 @@ f_1
 f_2
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/fec8ac09c85a58a0c8894006601ec8561c55a8a7/test/examples/pages/e.jl#L8' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/e.jl#L8' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.Pages.E.f_3-Tuple{Any}' href='#AutoDocs.Pages.E.f_3-Tuple{Any}'>#</a>
 **`AutoDocs.Pages.E.f_3`** &mdash; *Method*.
@@ -49,7 +49,7 @@ f_2
 f_3
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/fec8ac09c85a58a0c8894006601ec8561c55a8a7/test/examples/pages/e.jl#L11' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/e.jl#L11' class='documenter-source'>source</a><br>
 
 
 <a id='Private-1'></a>
@@ -75,7 +75,7 @@ in that order.
 g_1
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/fec8ac09c85a58a0c8894006601ec8561c55a8a7/test/examples/pages/e.jl#L15' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/e.jl#L15' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.Pages.E.g_2-Tuple{Any}' href='#AutoDocs.Pages.E.g_2-Tuple{Any}'>#</a>
 **`AutoDocs.Pages.E.g_2`** &mdash; *Method*.
@@ -85,7 +85,7 @@ g_1
 g_2
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/fec8ac09c85a58a0c8894006601ec8561c55a8a7/test/examples/pages/e.jl#L18' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/e.jl#L18' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.Pages.E.g_3-Tuple{Any}' href='#AutoDocs.Pages.E.g_3-Tuple{Any}'>#</a>
 **`AutoDocs.Pages.E.g_3`** &mdash; *Method*.
@@ -95,7 +95,7 @@ g_2
 g_3
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/fec8ac09c85a58a0c8894006601ec8561c55a8a7/test/examples/pages/e.jl#L21' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/e.jl#L21' class='documenter-source'>source</a><br>
 
 
 <a id='Ordering-of-Public-and-Private-1'></a>
@@ -120,7 +120,7 @@ in that order.
 T_1
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/fec8ac09c85a58a0c8894006601ec8561c55a8a7/test/examples/pages/e.jl#L26' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/e.jl#L26' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.Pages.E.T_2' href='#AutoDocs.Pages.E.T_2'>#</a>
 **`AutoDocs.Pages.E.T_2`** &mdash; *Type*.
@@ -130,5 +130,5 @@ T_1
 T_2
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/fec8ac09c85a58a0c8894006601ec8561c55a8a7/test/examples/pages/e.jl#L29' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/e.jl#L29' class='documenter-source'>source</a><br>
 
