@@ -37,7 +37,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Developer Documentation",
     "category": "section",
-    "text": "Reflection and introspection\nDocumentation of Julia's Internals\nInitialization of the Julia runtime\nJulia ASTs\nMore about types\nMemory layout of Julia Objects\nEval of Julia code\nCalling Conventions\nHigh-level Overview of the Native-Code Generation Process\nJulia Functions\nBase.Cartesian\nTalking to the compiler (the :meta mechanism)\nSubArrays\nSystem Image Building\nWorking with LLVM\nprintf() and stdio in the Julia runtime\nBounds checking\nProper maintenance and care of multi-threading locks\nArrays with custom indices\nDeveloping/debugging Julia's C code\nReporting and analyzing crashes (segfaults)\ngdb debugging tips\nUsing Valgrind with Julia\nSanitizer support"
+    "text": "Reflection and introspection\nDocumentation of Julia's Internals\nInitialization of the Julia runtime\nJulia ASTs\nMore about types\nMemory layout of Julia Objects\nEval of Julia code\nCalling Conventions\nHigh-level Overview of the Native-Code Generation Process\nJulia Functions\nBase.Cartesian\nTalking to the compiler (the :meta mechanism)\nSubArrays\nSystem Image Building\nWorking with LLVM\nprintf() and stdio in the Julia runtime\nBounds checking\nProper maintenance and care of multi-threading locks\nArrays with custom indices\nBase.LibGit2\nDeveloping/debugging Julia's C code\nReporting and analyzing crashes (segfaults)\ngdb debugging tips\nUsing Valgrind with Julia\nSanitizer support"
 },
 
 {
@@ -297,19 +297,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/mathematical-operations.html#Operator-Precedence-1",
-    "page": "Mathematical Operations and Elementary Functions",
-    "title": "Operator Precedence",
-    "category": "section",
-    "text": "Julia applies the following order of operations, from highest precedence to lowest:Category Operators\nSyntax . followed by ::\nExponentiation ^\nFractions //\nMultiplication * / % & \\\nBitshifts << >> >>>\nAddition + - | ⊻\nSyntax : .. followed by |>\nComparisons > < >= <= == === != !== <:\nControl flow && followed by || followed by ?\nAssignments = += -= *= /= //= \\= ^= ÷= %= |= &= ⊻= <<= >>= >>>="
-},
-
-{
     "location": "manual/mathematical-operations.html#Elementary-Functions-1",
     "page": "Mathematical Operations and Elementary Functions",
     "title": "Elementary Functions",
     "category": "section",
-    "text": "Julia provides a comprehensive collection of mathematical functions and operators. These mathematical operations are defined over as broad a class of numerical values as permit sensible definitions, including integers, floating-point numbers, rationals, and complexes, wherever such definitions make sense.Moreover, these functions (like any Julia function) can be applied in \"vectorized\" fashion to arrays and other collections with the dot syntax f.(A), e.g. sin.(A) will compute the elementwise sine of each element of an array A."
+    "text": "Julia provides a comprehensive collection of mathematical functions and operators. These mathematical operations are defined over as broad a class of numerical values as permit sensible definitions, including integers, floating-point numbers, rationals, and complex numbers, wherever such definitions make sense.Moreover, these functions (like any Julia function) can be applied in \"vectorized\" fashion to arrays and other collections with the dot syntax f.(A), e.g. sin.(A) will compute the sine of each element of an array A."
+},
+
+{
+    "location": "manual/mathematical-operations.html#Operator-Precedence-1",
+    "page": "Mathematical Operations and Elementary Functions",
+    "title": "Operator Precedence",
+    "category": "section",
+    "text": "Julia applies the following order of operations, from highest precedence to lowest:Category Operators\nSyntax . followed by ::\nExponentiation ^\nFractions //\nMultiplication * / % & \\\nBitshifts << >> >>>\nAddition + - | ⊻\nSyntax : .. followed by |>\nComparisons > < >= <= == === != !== <:\nControl flow && followed by || followed by ?\nAssignments = += -= *= /= //= \\= ^= ÷= %= |= &= ⊻= <<= >>= >>>=For a complete list of every Julia operator's precedence, see the top of this file: julia/src/julia-parser.scmYou can also find the numerical precedence for any given operator via the built-in function Base.operator_precedence, where higher numbers take precedence:julia> Base.operator_precedence(:+), Base.operator_precedence(:*), Base.operator_precedence(:.)\n(9,11,15)\n\njulia> Base.operator_precedence(:+=), Base.operator_precedence(:(=))  # (Note the necessary parens on `:(=)`)\n(1,1)"
 },
 
 {
@@ -469,7 +469,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Strings",
     "title": "Common Operations",
     "category": "section",
-    "text": "You can lexicographically compare strings using the standard comparison operators:julia> \"abracadabra\" < \"xylophone\"\ntrue\n\njulia> \"abracadabra\" == \"xylophone\"\nfalse\n\njulia> \"Hello, world.\" != \"Goodbye, world.\"\ntrue\n\njulia> \"1 + 2 = 3\" == \"1 + 2 = $(1 + 2)\"\ntrueYou can search for the index of a particular character using the search() function:julia> search(\"xylophone\", 'x')\n1\n\njulia> search(\"xylophone\", 'p')\n5\n\njulia> search(\"xylophone\", 'z')\n0You can start the search for a character at a given offset by providing a third argument:julia> search(\"xylophone\", 'o')\n4\n\njulia> search(\"xylophone\", 'o', 5)\n7\n\njulia> search(\"xylophone\", 'o', 8)\n0You can use the contains() function to check if a substring is contained in a string:julia> contains(\"Hello, world.\", \"world\")\ntrue\n\njulia> contains(\"Xylophon\", \"o\")\ntrue\n\njulia> contains(\"Xylophon\", \"a\")\nfalse\n\njulia> contains(\"Xylophon\", 'o')\nERROR: MethodError: no method matching contains(::String, ::Char)\nClosest candidates are:\n  contains(!Matched::Function, ::Any, !Matched::Any) at reduce.jl:660\n  contains(::AbstractString, !Matched::AbstractString) at strings/search.jl:378The last error is because 'o' is a character literal, and contains() is a generic function that looks for subsequences. To look for an element in a sequence, you must use in() instead.Two other handy string functions are repeat() and join():julia> repeat(\".:Z:.\", 10)\n\".:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:.\"\n\njulia> join([\"apples\", \"bananas\", \"pineapples\"], \", \", \" and \")\n\"apples, bananas and pineapples\"Some other useful functions include:endof(str) gives the maximal (byte) index that can be used to index into str.\nlength(str) the number of characters in str.\ni = start(str) gives the first valid index at which a character can be found in str (typically 1).\nc, j = next(str,i) returns next character at or after the index i and the next valid character index following that. With start() and endof(), can be used to iterate through the characters in str.\nind2chr(str,i) gives the number of characters in str up to and including any at index i.\nchr2ind(str,j) gives the index at which the jth character in str occurs."
+    "text": "You can lexicographically compare strings using the standard comparison operators:julia> \"abracadabra\" < \"xylophone\"\ntrue\n\njulia> \"abracadabra\" == \"xylophone\"\nfalse\n\njulia> \"Hello, world.\" != \"Goodbye, world.\"\ntrue\n\njulia> \"1 + 2 = 3\" == \"1 + 2 = $(1 + 2)\"\ntrueYou can search for the index of a particular character using the search() function:julia> search(\"xylophone\", 'x')\n1\n\njulia> search(\"xylophone\", 'p')\n5\n\njulia> search(\"xylophone\", 'z')\n0You can start the search for a character at a given offset by providing a third argument:julia> search(\"xylophone\", 'o')\n4\n\njulia> search(\"xylophone\", 'o', 5)\n7\n\njulia> search(\"xylophone\", 'o', 8)\n0You can use the contains() function to check if a substring is contained in a string:julia> contains(\"Hello, world.\", \"world\")\ntrue\n\njulia> contains(\"Xylophon\", \"o\")\ntrue\n\njulia> contains(\"Xylophon\", \"a\")\nfalse\n\njulia> contains(\"Xylophon\", 'o')\nERROR: MethodError: no method matching contains(::String, ::Char)\nClosest candidates are:\n  contains(!Matched::Function, ::Any, !Matched::Any) at reduce.jl:664\n  contains(::AbstractString, !Matched::AbstractString) at strings/search.jl:378The last error is because 'o' is a character literal, and contains() is a generic function that looks for subsequences. To look for an element in a sequence, you must use in() instead.Two other handy string functions are repeat() and join():julia> repeat(\".:Z:.\", 10)\n\".:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:.\"\n\njulia> join([\"apples\", \"bananas\", \"pineapples\"], \", \", \" and \")\n\"apples, bananas and pineapples\"Some other useful functions include:endof(str) gives the maximal (byte) index that can be used to index into str.\nlength(str) the number of characters in str.\ni = start(str) gives the first valid index at which a character can be found in str (typically 1).\nc, j = next(str,i) returns next character at or after the index i and the next valid character index following that. With start() and endof(), can be used to iterate through the characters in str.\nind2chr(str,i) gives the number of characters in str up to and including any at index i.\nchr2ind(str,j) gives the index at which the jth character in str occurs."
 },
 
 {
@@ -1869,7 +1869,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Metaprogramming",
     "title": "Generated functions",
     "category": "section",
-    "text": "A very special macro is @generated, which allows you to define so-called generated functions. These have the capability to generate specialized code depending on the types of their arguments with more flexibility and/or less code than what can be achieved with multiple dispatch. While macros work with expressions at parsing-time and cannot access the types of their inputs, a generated function gets expanded at a time when the types of the arguments are known, but the function is not yet compiled.Instead of performing some calculation or action, a generated function declaration returns a quoted expression which then forms the body for the method corresponding to the types of the arguments. When called, the body expression is first evaluated and compiled, then the returned expression is compiled and run. To make this efficient, the result is often cached. And to make this inferable, only a limited subset of the language is usable. Thus, generated functions provide a flexible framework to move work from run-time to compile-time, at the expense of greater restrictions on the allowable constructs.When defining generated functions, there are four main differences to ordinary functions:You annotate the function declaration with the @generated macro. This adds some information to the AST that lets the compiler know that this is a generated function.\nIn the body of the generated function you only have access to the types of the arguments – not their values – and any function that was defined before the definition of the generated function.\nInstead of calculating something or performing some action, you return a quoted expression which, when evaluated, does what you want.\nGenerated functions must not have any side-effects or examine any non-constant global state (including, for example, IO, locks, or non-local dictionaries). In other words, they must be completely pure. Due to an implementation limitation, this also means that they currently cannot define a closure or untyped generator.It's easiest to illustrate this with an example. We can declare a generated function foo asjulia> @generated function foo(x)\n           Core.println(x)\n           return :(x * x)\n       end\nfoo (generic function with 1 method)Note that the body returns a quoted expression, namely :(x * x), rather than just the value of x * x.From the caller's perspective, they are very similar to regular functions; in fact, you don't have to know if you're calling a regular or generated function - the syntax and result of the call is just the same. Let's see how foo behaves:julia> x = foo(2); # note: output is from println() statement in the body\nInt64\n\njulia> x           # now we print x\n4\n\njulia> y = foo(\"bar\");\nString\n\njulia> y\n\"barbar\"So, we see that in the body of the generated function, x is the type of the passed argument, and the value returned by the generated function, is the result of evaluating the quoted expression we returned from the definition, now with the value of x.What happens if we evaluate foo again with a type that we have already used?julia> foo(4)\n16Note that there is no printout of Int64. We can see that the body of the generated function was only executed once here, for the specific set of argument types, and the result was cached. After that, for this example, the expression returned from the generated function on the first invocation was re-used as the method body. However, the actual caching behavior is an implementation-defined performance optimization, so it is invalid to depend too closely on this behavior.The number of times a generated function is generated might be only once, but it might also be more often, or appear to not happen at all. As a consequence, you should never write a generated function with side effects - when, and how often, the side effects occur is undefined. (This is true for macros too - and just like for macros, the use of eval() in a generated function is a sign that you're doing something the wrong way.) However, unlike macros, the runtime system cannot correctly handle a call to eval(), so it is disallowed.It is also important to see how @generated functions interact with method redefinition. Following the principle that a correct @generated function must not observe any mutable state or cause any mutation of global state, we see the following behavior. Observe that the generated function cannot call any method that was not defined prior to the definition of the generated function itself.Initially f(x) has one definitionjulia> f(x) = \"original definition\";Define other operations that use f(x):julia> g(x) = f(x);\n\njulia> @generated gen1(x) = f(x);\n\njulia> @generated gen2(x) = :(f(x));We now add some new definitions for f(x):julia> f(x::Int) = \"definition for Int\";\n\njulia> f(x::Type{Int}) = \"definition for Type{Int}\";and compare how these results differ:julia> f(1)\n\"definition for Int\"\n\njulia> g(1)\n\"definition for Int\"\n\njulia> gen1(1)\n\"original definition\"\n\njulia> gen2(1)\n\"definition for Int\"Each method of a generated function has its own view of defined functions:julia> @generated gen1(x::Real) = f(x);\n\njulia> gen1(1)\n\"definition for Type{Int}\"The example generated function foo above did not do anything a normal function foo(x) = x * x could not do (except printing the type on the first invocation, and incurring higher overhead). However, the power of a generated function lies in its ability to compute different quoted expressions depending on the types passed to it:julia> @generated function bar(x)\n           if x <: Integer\n               return :(x ^ 2)\n           else\n               return :(x)\n           end\n       end\nbar (generic function with 1 method)\n\njulia> bar(4)\n16\n\njulia> bar(\"baz\")\n\"baz\"(although of course this contrived example would be more easily implemented using multiple dispatch...)Abusing this will corrupt the runtime system and cause undefined behavior:julia> @generated function baz(x)\n           if rand() < .9\n               return :(x^2)\n           else\n               return :(\"boo!\")\n           end\n       end\nbaz (generic function with 1 method)Since the body of the generated function is non-deterministic, its behavior, and the behavior of all subsequent code is undefined.Don't copy these examples!These examples are hopefully helpful to illustrate how generated functions work, both in the definition end and at the call site; however, don't copy them, for the following reasons:the foo function has side-effects (the call to Core.println), and it is undefined exactly when, how often or how many times these side-effects will occur\nthe bar function solves a problem that is better solved with multiple dispatch - defining bar(x) = x and bar(x::Integer) = x ^ 2 will do the same thing, but it is both simpler and faster.\nthe baz function is pathologically insaneNote that the set of operations that should not be attempted in a generated function is unbounded, and the runtime system can currently only detect a subset of the invalid operations. There are many other operations that will simply corrupt the runtime system without notification, usually in subtle ways not obviously connected to the bad definition. Because the function generator is run during inference, it must respect all of the limitations of that code.Some operations that should not be attempted include:Caching of native pointers.\nInteracting with the contents or methods of Core.Inference in any way.\nObserving any mutable state.\nInference on the generated function may be run at any time, including while your code is attempting to observe or mutate this state.\nTaking any locks: C code you call out to may use locks internally, (for example, it is not problematic to call malloc, even though most implementations require locks internally) but don't attempt to hold or acquire any while executing Julia code.\nCalling any function that is defined after the body of the generated function. This condition is relaxed for incrementally-loaded precompiled modules to allow calling any function in the module.Alright, now that we have a better understanding of how generated functions work, let's use them to build some more advanced (and valid) functionality..."
+    "text": "A very special macro is @generated, which allows you to define so-called generated functions. These have the capability to generate specialized code depending on the types of their arguments with more flexibility and/or less code than what can be achieved with multiple dispatch. While macros work with expressions at parsing-time and cannot access the types of their inputs, a generated function gets expanded at a time when the types of the arguments are known, but the function is not yet compiled.Instead of performing some calculation or action, a generated function declaration returns a quoted expression which then forms the body for the method corresponding to the types of the arguments. When called, the body expression is first evaluated and compiled, then the returned expression is compiled and run. To make this efficient, the result is often cached. And to make this inferable, only a limited subset of the language is usable. Thus, generated functions provide a flexible framework to move work from run-time to compile-time, at the expense of greater restrictions on the allowable constructs.When defining generated functions, there are four main differences to ordinary functions:You annotate the function declaration with the @generated macro. This adds some information to the AST that lets the compiler know that this is a generated function.\nIn the body of the generated function you only have access to the types of the arguments – not their values – and any function that was defined before the definition of the generated function.\nInstead of calculating something or performing some action, you return a quoted expression which, when evaluated, does what you want.\nGenerated functions must not mutate or observe any non-constant global state (including, for example, IO, locks, non-local dictionaries, or using method_exists). This means they can only read global constants, and cannot have any side effects. In other words, they must be completely pure. Due to an implementation limitation, this also means that they currently cannot define a closure or untyped generator.It's easiest to illustrate this with an example. We can declare a generated function foo asjulia> @generated function foo(x)\n           Core.println(x)\n           return :(x * x)\n       end\nfoo (generic function with 1 method)Note that the body returns a quoted expression, namely :(x * x), rather than just the value of x * x.From the caller's perspective, they are very similar to regular functions; in fact, you don't have to know if you're calling a regular or generated function - the syntax and result of the call is just the same. Let's see how foo behaves:julia> x = foo(2); # note: output is from println() statement in the body\nInt64\n\njulia> x           # now we print x\n4\n\njulia> y = foo(\"bar\");\nString\n\njulia> y\n\"barbar\"So, we see that in the body of the generated function, x is the type of the passed argument, and the value returned by the generated function, is the result of evaluating the quoted expression we returned from the definition, now with the value of x.What happens if we evaluate foo again with a type that we have already used?julia> foo(4)\n16Note that there is no printout of Int64. We can see that the body of the generated function was only executed once here, for the specific set of argument types, and the result was cached. After that, for this example, the expression returned from the generated function on the first invocation was re-used as the method body. However, the actual caching behavior is an implementation-defined performance optimization, so it is invalid to depend too closely on this behavior.The number of times a generated function is generated might be only once, but it might also be more often, or appear to not happen at all. As a consequence, you should never write a generated function with side effects - when, and how often, the side effects occur is undefined. (This is true for macros too - and just like for macros, the use of eval() in a generated function is a sign that you're doing something the wrong way.) However, unlike macros, the runtime system cannot correctly handle a call to eval(), so it is disallowed.It is also important to see how @generated functions interact with method redefinition. Following the principle that a correct @generated function must not observe any mutable state or cause any mutation of global state, we see the following behavior. Observe that the generated function cannot call any method that was not defined prior to the definition of the generated function itself.Initially f(x) has one definitionjulia> f(x) = \"original definition\";Define other operations that use f(x):julia> g(x) = f(x);\n\njulia> @generated gen1(x) = f(x);\n\njulia> @generated gen2(x) = :(f(x));We now add some new definitions for f(x):julia> f(x::Int) = \"definition for Int\";\n\njulia> f(x::Type{Int}) = \"definition for Type{Int}\";and compare how these results differ:julia> f(1)\n\"definition for Int\"\n\njulia> g(1)\n\"definition for Int\"\n\njulia> gen1(1)\n\"original definition\"\n\njulia> gen2(1)\n\"definition for Int\"Each method of a generated function has its own view of defined functions:julia> @generated gen1(x::Real) = f(x);\n\njulia> gen1(1)\n\"definition for Type{Int}\"The example generated function foo above did not do anything a normal function foo(x) = x * x could not do (except printing the type on the first invocation, and incurring higher overhead). However, the power of a generated function lies in its ability to compute different quoted expressions depending on the types passed to it:julia> @generated function bar(x)\n           if x <: Integer\n               return :(x ^ 2)\n           else\n               return :(x)\n           end\n       end\nbar (generic function with 1 method)\n\njulia> bar(4)\n16\n\njulia> bar(\"baz\")\n\"baz\"(although of course this contrived example would be more easily implemented using multiple dispatch...)Abusing this will corrupt the runtime system and cause undefined behavior:julia> @generated function baz(x)\n           if rand() < .9\n               return :(x^2)\n           else\n               return :(\"boo!\")\n           end\n       end\nbaz (generic function with 1 method)Since the body of the generated function is non-deterministic, its behavior, and the behavior of all subsequent code is undefined.Don't copy these examples!These examples are hopefully helpful to illustrate how generated functions work, both in the definition end and at the call site; however, don't copy them, for the following reasons:the foo function has side-effects (the call to Core.println), and it is undefined exactly when, how often or how many times these side-effects will occur\nthe bar function solves a problem that is better solved with multiple dispatch - defining bar(x) = x and bar(x::Integer) = x ^ 2 will do the same thing, but it is both simpler and faster.\nthe baz function is pathologically insaneNote that the set of operations that should not be attempted in a generated function is unbounded, and the runtime system can currently only detect a subset of the invalid operations. There are many other operations that will simply corrupt the runtime system without notification, usually in subtle ways not obviously connected to the bad definition. Because the function generator is run during inference, it must respect all of the limitations of that code.Some operations that should not be attempted include:Caching of native pointers.\nInteracting with the contents or methods of Core.Inference in any way.\nObserving any mutable state.\nInference on the generated function may be run at any time, including while your code is attempting to observe or mutate this state.\nTaking any locks: C code you call out to may use locks internally, (for example, it is not problematic to call malloc, even though most implementations require locks internally) but don't attempt to hold or acquire any while executing Julia code.\nCalling any function that is defined after the body of the generated function. This condition is relaxed for incrementally-loaded precompiled modules to allow calling any function in the module.Alright, now that we have a better understanding of how generated functions work, let's use them to build some more advanced (and valid) functionality..."
 },
 
 {
@@ -2949,7 +2949,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Embedding Julia",
     "title": "High-Level Embedding",
     "category": "section",
-    "text": "We start with a simple C program that initializes Julia and calls some Julia code:#include <julia.h>\n\nint main(int argc, char *argv[])\n{\n    /* required: setup the Julia context */\n    jl_init(NULL);\n\n    /* run Julia commands */\n    jl_eval_string(\"print(sqrt(2.0))\");\n\n    /* strongly recommended: notify Julia that the\n         program is about to terminate. this allows\n         Julia time to cleanup pending write requests\n         and run all finalizers\n    */\n    jl_atexit_hook(0);\n    return 0;\n}In order to build this program you have to put the path to the Julia header into the include path and link against libjulia. For instance, when Julia is installed to $JULIA_DIR, one can compile the above test program test.c with gcc using:gcc -o test -fPIC -I$JULIA_DIR/include/julia -L$JULIA_DIR/lib test.c -ljulia $JULIA_DIR/lib/julia/libstdc++.so.6Then if the environment variable JULIA_HOME is set to $JULIA_DIR/bin, the output test program can be executed.Alternatively, look at the embedding.c program in the Julia source tree in the examples/ folder. The file ui/repl.c program is another simple example of how to set jl_options options while linking against libjulia.The first thing that has to be done before calling any other Julia C function is to initialize Julia. This is done by calling jl_init, which takes as argument a C string (const char*) to the location where Julia is installed. When the argument is NULL, Julia tries to determine the install location automatically.The second statement in the test program evaluates a Julia statement using a call to jl_eval_string.Before the program terminates, it is strongly recommended to call jl_atexit_hook.  The above example program calls this before returning from main.note: Note\nCurrently, dynamically linking with the libjulia shared library requires passing the RTLD_GLOBAL option. In Python, this looks like:>>> julia=CDLL('./libjulia.dylib',RTLD_GLOBAL)\n>>> julia.jl_init.argtypes = [c_char_p]\n>>> julia.jl_init('.')\n250593296note: Note\nIf the julia program needs to access symbols from the main executable, it may be necessary to add -Wl,--export-dynamic linker flag at compile time on Linux in addition to the ones generated by julia-config.jl described below. This is not necessary when compiling a shared library."
+    "text": "We start with a simple C program that initializes Julia and calls some Julia code:#include <julia.h>\n\nint main(int argc, char *argv[])\n{\n    /* required: setup the Julia context */\n    jl_init();\n\n    /* run Julia commands */\n    jl_eval_string(\"print(sqrt(2.0))\");\n\n    /* strongly recommended: notify Julia that the\n         program is about to terminate. this allows\n         Julia time to cleanup pending write requests\n         and run all finalizers\n    */\n    jl_atexit_hook(0);\n    return 0;\n}In order to build this program you have to put the path to the Julia header into the include path and link against libjulia. For instance, when Julia is installed to $JULIA_DIR, one can compile the above test program test.c with gcc using:gcc -o test -fPIC -I$JULIA_DIR/include/julia -L$JULIA_DIR/lib test.c -ljulia $JULIA_DIR/lib/julia/libstdc++.so.6Then if the environment variable JULIA_HOME is set to $JULIA_DIR/bin, the output test program can be executed.Alternatively, look at the embedding.c program in the Julia source tree in the examples/ folder. The file ui/repl.c program is another simple example of how to set jl_options options while linking against libjulia.The first thing that has to be done before calling any other Julia C function is to initialize Julia. This is done by calling jl_init, which tries to automatically determine Julia's install location. If you need to specify a custom location, or specify which system image to load, use jl_init_with_image instead.The second statement in the test program evaluates a Julia statement using a call to jl_eval_string.Before the program terminates, it is strongly recommended to call jl_atexit_hook.  The above example program calls this before returning from main.note: Note\nCurrently, dynamically linking with the libjulia shared library requires passing the RTLD_GLOBAL option. In Python, this looks like:>>> julia=CDLL('./libjulia.dylib',RTLD_GLOBAL)\n>>> julia.jl_init.argtypes = []\n>>> julia.jl_init()\n250593296note: Note\nIf the julia program needs to access symbols from the main executable, it may be necessary to add -Wl,--export-dynamic linker flag at compile time on Linux in addition to the ones generated by julia-config.jl described below. This is not necessary when compiling a shared library."
 },
 
 {
@@ -2965,7 +2965,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Embedding Julia",
     "title": "Example",
     "category": "section",
-    "text": "Below is essentially the same as above with one small change; the argument to jl_init is now JULIA_INIT_DIR which is defined by julia-config.jl.:#include <julia.h>\n\nint main(int argc, char *argv[])\n{\n   jl_init(JULIA_INIT_DIR);\n   (void)jl_eval_string(\"println(sqrt(2.0))\");\n   jl_atexit_hook(0);\n   return 0;\n}"
+    "text": "#include <julia.h>\n\nint main(int argc, char *argv[])\n{\n   jl_init();\n   (void)jl_eval_string(\"println(sqrt(2.0))\");\n   jl_atexit_hook(0);\n   return 0;\n}"
 },
 
 {
@@ -4445,7 +4445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Essentials",
     "title": "Base.isequal",
     "category": "Method",
-    "text": "isequal(x::Nullable, y::Nullable)\n\nIf neither x nor y is null, compare them according to their values (i.e. isequal(get(x), get(y))). Else, return true if both arguments are null, and false if one is null but not the other: nulls are considered equal.\n\n\n\n"
+    "text": "isequal(x, y)\n\nSimilar to ==, except treats all floating-point NaN values as equal to each other, and treats -0.0 as unequal to 0.0. The default implementation of isequal calls ==, so if you have a type that doesn't have these floating-point subtleties then you probably only need to define ==.\n\nisequal is the comparison function used by hash tables (Dict). isequal(x,y) must imply that hash(x) == hash(y).\n\nThis typically means that if you define your own == function then you must define a corresponding hash (and vice versa). Collections typically implement isequal by calling isequal recursively on all contents.\n\nScalar types generally do not need to implement isequal separate from ==, unless they represent floating-point numbers amenable to a more efficient implementation than that provided as a generic fallback (based on isnan, signbit, and ==).\n\njulia> isequal([1., NaN], [1., NaN])\ntrue\n\njulia> [1., NaN] == [1., NaN]\nfalse\n\njulia> 0.0 == -0.0\ntrue\n\njulia> isequal(0.0, -0.0)\nfalse\n\n\n\nisequal(x::Nullable, y::Nullable)\n\nIf neither x nor y is null, compare them according to their values (i.e. isequal(get(x), get(y))). Else, return true if both arguments are null, and false if one is null but not the other: nulls are considered equal.\n\n\n\n"
 },
 
 {
@@ -6669,7 +6669,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Collections and Data Structures",
     "title": "Base.merge!",
     "category": "Function",
-    "text": "Merge changes into current head \n\n\n\nInternal implementation of merge. Returns true if merge was successful, otherwise false\n\n\n\nmerge!(repo::GitRepo; kwargs...) -> Bool\n\nPerform a git merge on the repository repo, merging commits with diverging history into the current branch. Returns true if the merge succeeded, false if not.\n\nThe keyword arguments are:\n\ncommittish::AbstractString=\"\": Merge the named commit(s) in committish.\nbranch::AbstractString=\"\": Merge the branch branch and all its commits since it diverged from the current branch.\nfastforward::Bool=false: If fastforward is true, only merge if the merge is a fast-forward (the current branch head is an ancestor of the commits to be merged), otherwise refuse to merge and return false. This is equivalent to the git CLI option --ff-only.\nmerge_opts::MergeOptions=MergeOptions(): merge_opts specifies options for the merge, such as merge strategy in case of conflicts.\ncheckout_opts::CheckoutOptions=CheckoutOptions(): checkout_opts specifies options for the checkout step.\n\nEquivalent to git merge [--ff-only] [<committish> | <branch>].\n\n\n\nmerge!(d::Associative, others::Associative...)\n\nUpdate collection with pairs from the other collections. See also merge.\n\njulia> d1 = Dict(1 => 2, 3 => 4);\n\njulia> d2 = Dict(1 => 4, 4 => 5);\n\njulia> merge!(d1, d2);\n\njulia> d1\nDict{Int64,Int64} with 3 entries:\n  4 => 5\n  3 => 4\n  1 => 4\n\n\n\nmerge!(combine, d::Associative, others::Associative...)\n\nUpdate collection with pairs from the other collections. Values with the same key will be combined using the combiner function.\n\njulia> d1 = Dict(1 => 2, 3 => 4);\n\njulia> d2 = Dict(1 => 4, 4 => 5);\n\njulia> merge!(+, d1, d2);\n\njulia> d1\nDict{Int64,Int64} with 3 entries:\n  4 => 5\n  3 => 4\n  1 => 6\n\njulia> merge!(-, d1, d1);\n\njulia> d1\nDict{Int64,Int64} with 3 entries:\n  4 => 0\n  3 => 0\n  1 => 0\n\n\n\n"
+    "text": "merge!(d::Associative, others::Associative...)\n\nUpdate collection with pairs from the other collections. See also merge.\n\njulia> d1 = Dict(1 => 2, 3 => 4);\n\njulia> d2 = Dict(1 => 4, 4 => 5);\n\njulia> merge!(d1, d2);\n\njulia> d1\nDict{Int64,Int64} with 3 entries:\n  4 => 5\n  3 => 4\n  1 => 4\n\n\n\nmerge!(combine, d::Associative, others::Associative...)\n\nUpdate collection with pairs from the other collections. Values with the same key will be combined using the combiner function.\n\njulia> d1 = Dict(1 => 2, 3 => 4);\n\njulia> d2 = Dict(1 => 4, 4 => 5);\n\njulia> merge!(+, d1, d2);\n\njulia> d1\nDict{Int64,Int64} with 3 entries:\n  4 => 5\n  3 => 4\n  1 => 6\n\njulia> merge!(-, d1, d1);\n\njulia> d1\nDict{Int64,Int64} with 3 entries:\n  4 => 0\n  3 => 0\n  1 => 0\n\n\n\nMerge changes into current head \n\n\n\nInternal implementation of merge. Returns true if merge was successful, otherwise false\n\n\n\nmerge!(repo::GitRepo; kwargs...) -> Bool\n\nPerform a git merge on the repository repo, merging commits with diverging history into the current branch. Returns true if the merge succeeded, false if not.\n\nThe keyword arguments are:\n\ncommittish::AbstractString=\"\": Merge the named commit(s) in committish.\nbranch::AbstractString=\"\": Merge the branch branch and all its commits since it diverged from the current branch.\nfastforward::Bool=false: If fastforward is true, only merge if the merge is a fast-forward (the current branch head is an ancestor of the commits to be merged), otherwise refuse to merge and return false. This is equivalent to the git CLI option --ff-only.\nmerge_opts::MergeOptions=MergeOptions(): merge_opts specifies options for the merge, such as merge strategy in case of conflicts.\ncheckout_opts::CheckoutOptions=CheckoutOptions(): checkout_opts specifies options for the checkout step.\n\nEquivalent to git merge [--ff-only] [<committish> | <branch>].\n\n\n\n"
 },
 
 {
@@ -7021,7 +7021,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Mathematics",
     "title": "Base.mod",
     "category": "Function",
-    "text": "mod(x, y)\nrem(x, y, RoundDown)\n\nThe reduction of x modulo y, or equivalently, the remainder of x after floored division by y, i.e.\n\nx - y*fld(x,y)\n\nif computed without intermediate rounding.\n\nThe result will have the same sign as y, and magnitude less than abs(y) (with some exceptions, see note below).\n\nnote: Note\nWhen used with floating point values, the exact result may not be representable by the type, and so rounding error may occur. In particular, if the exact result is very close to y, then it may be rounded to y.\n\njulia> mod(8, 3)\n2\n\njulia> mod(9, 3)\n0\n\njulia> mod(8.9, 3)\n2.9000000000000004\n\njulia> mod(eps(), 3)\n2.220446049250313e-16\n\njulia> mod(-eps(), 3)\n3.0\n\n\n\n"
+    "text": "mod(x, y)\nrem(x, y, RoundDown)\n\nThe reduction of x modulo y, or equivalently, the remainder of x after floored division by y, i.e.\n\nx - y*fld(x,y)\n\nif computed without intermediate rounding.\n\nThe result will have the same sign as y, and magnitude less than abs(y) (with some exceptions, see note below).\n\nnote: Note\nWhen used with floating point values, the exact result may not be representable by the type, and so rounding error may occur. In particular, if the exact result is very close to y, then it may be rounded to y.\n\njulia> mod(8, 3)\n2\n\njulia> mod(9, 3)\n0\n\njulia> mod(8.9, 3)\n2.9000000000000004\n\njulia> mod(eps(), 3)\n2.220446049250313e-16\n\njulia> mod(-eps(), 3)\n3.0\n\n\n\nrem(x::Integer, T::Type{<:Integer}) -> T\nmod(x::Integer, T::Type{<:Integer}) -> T\n%(x::Integer, T::Type{<:Integer}) -> T\n\nFind y::T such that x ≡ y (mod n), where n is the number of integers representable in T, and y is an integer in [typemin(T),typemax(T)]. If T can represent any integer (e.g. T == BigInt), then this operation corresponds to a conversion to T.\n\njulia> 129 % Int8\n-127\n\n\n\n"
 },
 
 {
@@ -7825,7 +7825,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "stdlib/math.html#Base.round-Tuple{Complex{T},RoundingMode{MR},RoundingMode{MI}} where MI where MR where T<:AbstractFloat",
+    "location": "stdlib/math.html#Base.round-Union{Tuple{Complex{T},RoundingMode{MR},RoundingMode{MI}}, Tuple{MI}, Tuple{MR}, Tuple{T}} where MI where MR where T<:AbstractFloat",
     "page": "Mathematics",
     "title": "Base.round",
     "category": "Method",
@@ -8261,7 +8261,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Mathematics",
     "title": "Base.Math.lfact",
     "category": "Function",
-    "text": "lfact(x)\n\nCompute the logarithmic factorial of x\n\n\n\n"
+    "text": "lfact(x)\n\nCompute the logarithmic factorial of a nonnegative integer x. Equivalent to lgamma of x + 1, but lgamma extends this function to non-integer x.\n\n\n\n"
 },
 
 {
@@ -8405,7 +8405,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Mathematics",
     "title": "Base.cov",
     "category": "Function",
-    "text": "cov(x[, corrected=true])\n\nCompute the variance of the vector x. If corrected is true (the default) then the sum is scaled with n-1, whereas the sum is scaled with n if corrected is false where n = length(x).\n\n\n\ncov(X[, vardim=1, corrected=true])\n\nCompute the covariance matrix of the matrix X along the dimension vardim. If corrected is true (the default) then the sum is scaled with n-1, whereas the sum is scaled with n if corrected is false where n = size(X, vardim).\n\n\n\ncov(x, y[, corrected=true])\n\nCompute the covariance between the vectors x and y. If corrected is true (the default) then the sum is scaled with n-1, whereas the sum is scaled with n if corrected is false where n = length(x) = length(y).\n\n\n\ncov(X, Y[, vardim=1, corrected=true])\n\nCompute the covariance between the vectors or matrices X and Y along the dimension vardim. If corrected is true (the default) then the sum is scaled with n-1, whereas the sum is scaled with n if corrected is false where n = size(X, vardim) = size(Y, vardim).\n\n\n\n"
+    "text": "cov(x[, corrected=true])\n\nCompute the variance of the vector x. If corrected is true (the default) then the sum is scaled with n-1, whereas the sum is scaled with n if corrected is false where n = length(x).\n\n\n\ncov(X[, vardim=1, corrected=true])\n\nCompute the covariance matrix of the matrix X along the dimension vardim. If corrected is true (the default) then the sum is scaled with n-1, whereas the sum is scaled with n if corrected is false where n = size(X, vardim).\n\n\n\ncov(x, y[, corrected=true])\n\nCompute the covariance between the vectors x and y. If corrected is true (the default), computes frac1n-1sum_i=1^n (x_i-bar x) (y_i-bar y)^* where * denotes the complex conjugate and n = length(x) = length(y). If corrected is false, computes rac1nsum_i=1^n (x_i-bar x) (y_i-bar y)^*.\n\n\n\ncov(X, Y[, vardim=1, corrected=true])\n\nCompute the covariance between the vectors or matrices X and Y along the dimension vardim. If corrected is true (the default) then the sum is scaled with n-1, whereas the sum is scaled with n if corrected is false where n = size(X, vardim) = size(Y, vardim).\n\n\n\n"
 },
 
 {
@@ -9365,7 +9365,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Numbers",
     "title": "Base.Random.srand",
     "category": "Function",
-    "text": "srand([rng=GLOBAL_RNG], [seed])\n\nReseed the random number generator. If a seed is provided, the RNG will give a reproducible sequence of numbers, otherwise Julia will get entropy from the system. For MersenneTwister, the seed may be a non-negative integer, a vector of UInt32 integers or a filename, in which case the seed is read from a file. RandomDevice does not support seeding.\n\n\n\n"
+    "text": "srand([rng=GLOBAL_RNG], [seed]) -> rng\nsrand([rng=GLOBAL_RNG], filename, n=4) -> rng\n\nReseed the random number generator. If a seed is provided, the RNG will give a reproducible sequence of numbers, otherwise Julia will get entropy from the system. For MersenneTwister, the seed may be a non-negative integer, a vector of UInt32 integers or a filename, in which case the seed is read from a file (4n bytes are read from the file, where n is an optional argument). RandomDevice does not support seeding.\n\n\n\n"
 },
 
 {
@@ -9373,7 +9373,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Numbers",
     "title": "Base.Random.MersenneTwister",
     "category": "Type",
-    "text": "MersenneTwister(seed=0)\n\nCreate a MersenneTwister RNG object. Different RNG objects can have their own seeds, which may be useful for generating different streams of random numbers.\n\n\n\n"
+    "text": "MersenneTwister(seed)\n\nCreate a MersenneTwister RNG object. Different RNG objects can have their own seeds, which may be useful for generating different streams of random numbers.\n\n\n\n"
 },
 
 {
@@ -10945,7 +10945,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "stdlib/arrays.html#Base.permute!-Tuple{Any,AbstractArray{T,1}} where T",
+    "location": "stdlib/arrays.html#Base.permute!-Tuple{Any,AbstractArray{T,1} where T}",
     "page": "Arrays",
     "title": "Base.permute!",
     "category": "Method",
@@ -11013,7 +11013,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Arrays",
     "title": "Combinatorics",
     "category": "section",
-    "text": "Base.Random.randperm\nBase.invperm\nBase.isperm\nBase.permute!{T}(::Any, ::AbstractArray{T, 1})\nBase.ipermute!\nBase.Random.randcycle\nBase.Random.shuffle\nBase.Random.shuffle!\nBase.reverse\nBase.reverseind\nBase.reverse!"
+    "text": "Base.Random.randperm\nBase.invperm\nBase.isperm\nBase.permute!(::Any, ::AbstractVector)\nBase.ipermute!\nBase.Random.randcycle\nBase.Random.shuffle\nBase.Random.shuffle!\nBase.reverse\nBase.reverseind\nBase.reverse!"
 },
 
 {
@@ -11225,7 +11225,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "stdlib/arrays.html#Base.permute!-Tuple{SparseMatrixCSC{Tv,Ti},SparseMatrixCSC{Tv,Ti},AbstractArray{Tp,1},AbstractArray{Tq,1}} where Tq<:Integer where Tp<:Integer where Ti where Tv",
+    "location": "stdlib/arrays.html#Base.permute!-Union{Tuple{SparseMatrixCSC{Tv,Ti},SparseMatrixCSC{Tv,Ti},AbstractArray{Tp,1},AbstractArray{Tq,1}}, Tuple{Ti}, Tuple{Tp}, Tuple{Tq}, Tuple{Tv}} where Tq<:Integer where Tp<:Integer where Ti where Tv",
     "page": "Arrays",
     "title": "Base.permute!",
     "category": "Method",
@@ -11429,7 +11429,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Tasks and Parallel Computing",
     "title": "Base.bind",
     "category": "Method",
-    "text": "bind(chnl::Channel, task::Task)\n\nAssociates the lifetime of chnl with a task. Channel chnl is automatically closed when the task terminates. Any uncaught exception in the task is propagated to all waiters on chnl.\n\nThe chnl object can be explicitly closed independent of task termination. Terminating tasks have no effect on already closed Channel objects.\n\nWhen a channel is bound to multiple tasks, the first task to terminate will close the channel. When multiple channels are bound to the same task, termination of the task will close all of the bound channels.\n\njulia> c = Channel(0);\n\njulia> task = @schedule foreach(i->put!(c, i), 1:4);\n\njulia> bind(c,task);\n\njulia> for i in c\n           @show i\n       end;\ni = 1\ni = 2\ni = 3\ni = 4\n\njulia> isopen(c)\nfalse\n\njulia> c = Channel(0);\n\njulia> task = @schedule (put!(c,1);error(\"foo\"));\n\njulia> bind(c,task);\n\njulia> take!(c)\n1\n\njulia> put!(c,1);\nERROR: foo\nStacktrace:\n [1] check_channel_state(::Channel{Any}) at ./channels.jl:125\n [2] put!(::Channel{Any}, ::Int64) at ./channels.jl:256\n\n\n\n"
+    "text": "bind(chnl::Channel, task::Task)\n\nAssociates the lifetime of chnl with a task. Channel chnl is automatically closed when the task terminates. Any uncaught exception in the task is propagated to all waiters on chnl.\n\nThe chnl object can be explicitly closed independent of task termination. Terminating tasks have no effect on already closed Channel objects.\n\nWhen a channel is bound to multiple tasks, the first task to terminate will close the channel. When multiple channels are bound to the same task, termination of the task will close all of the bound channels.\n\njulia> c = Channel(0);\n\njulia> task = @schedule foreach(i->put!(c, i), 1:4);\n\njulia> bind(c,task);\n\njulia> for i in c\n           @show i\n       end;\ni = 1\ni = 2\ni = 3\ni = 4\n\njulia> isopen(c)\nfalse\n\njulia> c = Channel(0);\n\njulia> task = @schedule (put!(c,1);error(\"foo\"));\n\njulia> bind(c,task);\n\njulia> take!(c)\n1\n\njulia> put!(c,1);\nERROR: foo\nStacktrace:\n [1] check_channel_state(::Channel{Any}) at ./channels.jl:127\n [2] put!(::Channel{Any}, ::Int64) at ./channels.jl:258\n\n\n\n"
 },
 
 {
@@ -12285,7 +12285,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Linear Algebra",
     "title": "Base.LinAlg.Bidiagonal",
     "category": "Type",
-    "text": "Bidiagonal(dv, ev, isupper::Bool)\n\nConstructs an upper (isupper=true) or lower (isupper=false) bidiagonal matrix using the given diagonal (dv) and off-diagonal (ev) vectors.  The result is of type Bidiagonal and provides efficient specialized linear solvers, but may be converted into a regular matrix with convert(Array, _) (or Array(_) for short). ev's length must be one less than the length of dv.\n\nExample\n\njulia> dv = [1; 2; 3; 4]\n4-element Array{Int64,1}:\n 1\n 2\n 3\n 4\n\njulia> ev = [7; 8; 9]\n3-element Array{Int64,1}:\n 7\n 8\n 9\n\njulia> Bu = Bidiagonal(dv, ev, true) # ev is on the first superdiagonal\n4×4 Bidiagonal{Int64}:\n 1  7  ⋅  ⋅\n ⋅  2  8  ⋅\n ⋅  ⋅  3  9\n ⋅  ⋅  ⋅  4\n\njulia> Bl = Bidiagonal(dv, ev, false) # ev is on the first subdiagonal\n4×4 Bidiagonal{Int64}:\n 1  ⋅  ⋅  ⋅\n 7  2  ⋅  ⋅\n ⋅  8  3  ⋅\n ⋅  ⋅  9  4\n\n\n\n"
+    "text": "Bidiagonal(dv, ev, isupper::Bool)\n\nConstructs an upper (isupper=true) or lower (isupper=false) bidiagonal matrix using the given diagonal (dv) and off-diagonal (ev) vectors.  The result is of type Bidiagonal and provides efficient specialized linear solvers, but may be converted into a regular matrix with convert(Array, _) (or Array(_) for short). ev's length must be one less than the length of dv.\n\nExample\n\njulia> dv = [1; 2; 3; 4]\n4-element Array{Int64,1}:\n 1\n 2\n 3\n 4\n\njulia> ev = [7; 8; 9]\n3-element Array{Int64,1}:\n 7\n 8\n 9\n\njulia> Bu = Bidiagonal(dv, ev, true) # ev is on the first superdiagonal\n4×4 Bidiagonal{Int64}:\n 1  7  ⋅  ⋅\n ⋅  2  8  ⋅\n ⋅  ⋅  3  9\n ⋅  ⋅  ⋅  4\n\njulia> Bl = Bidiagonal(dv, ev, false) # ev is on the first subdiagonal\n4×4 Bidiagonal{Int64}:\n 1  ⋅  ⋅  ⋅\n 7  2  ⋅  ⋅\n ⋅  8  3  ⋅\n ⋅  ⋅  9  4\n\n\n\nBidiagonal(dv, ev, uplo::Char)\n\nConstructs an upper (uplo='U') or lower (uplo='L') bidiagonal matrix using the given diagonal (dv) and off-diagonal (ev) vectors.  The result is of type Bidiagonal and provides efficient specialized linear solvers, but may be converted into a regular matrix with convert(Array, _) (or Array(_) for short). ev's length must be one less than the length of dv.\n\nExample\n\njulia> dv = [1; 2; 3; 4]\n4-element Array{Int64,1}:\n 1\n 2\n 3\n 4\n\njulia> ev = [7; 8; 9]\n3-element Array{Int64,1}:\n 7\n 8\n 9\n\njulia> Bu = Bidiagonal(dv, ev, 'U') #e is on the first superdiagonal\n4×4 Bidiagonal{Int64}:\n 1  7  ⋅  ⋅\n ⋅  2  8  ⋅\n ⋅  ⋅  3  9\n ⋅  ⋅  ⋅  4\n\njulia> Bl = Bidiagonal(dv, ev, 'L') #e is on the first subdiagonal\n4×4 Bidiagonal{Int64}:\n 1  ⋅  ⋅  ⋅\n 7  2  ⋅  ⋅\n ⋅  8  3  ⋅\n ⋅  ⋅  9  4\n\n\n\nBidiagonal(A, isupper::Bool)\n\nConstruct a Bidiagonal matrix from the main diagonal of A and its first super- (if isupper=true) or sub-diagonal (if isupper=false).\n\nExample\n\njulia> A = [1 1 1 1; 2 2 2 2; 3 3 3 3; 4 4 4 4]\n4×4 Array{Int64,2}:\n 1  1  1  1\n 2  2  2  2\n 3  3  3  3\n 4  4  4  4\n\njulia> Bidiagonal(A, true) #contains the main diagonal and first superdiagonal of A\n4×4 Bidiagonal{Int64}:\n 1  1  ⋅  ⋅\n ⋅  2  2  ⋅\n ⋅  ⋅  3  3\n ⋅  ⋅  ⋅  4\n\njulia> Bidiagonal(A, false) #contains the main diagonal and first subdiagonal of A\n4×4 Bidiagonal{Int64}:\n 1  ⋅  ⋅  ⋅\n 2  2  ⋅  ⋅\n ⋅  3  3  ⋅\n ⋅  ⋅  4  4\n\n\n\n"
 },
 
 {
@@ -12333,7 +12333,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Linear Algebra",
     "title": "Base.LinAlg.lufact",
     "category": "Function",
-    "text": "lufact(A [,pivot=Val{true}]) -> F::LU\n\nCompute the LU factorization of A.\n\nIn most cases, if A is a subtype S of AbstractMatrix{T} with an element type T supporting +, -, * and /, the return type is LU{T,S{T}}. If pivoting is chosen (default) the element type should also support abs and <.\n\nThe individual components of the factorization F can be accessed by indexing:\n\nComponent Description\nF[:L] L (lower triangular) part of LU\nF[:U] U (upper triangular) part of LU\nF[:p] (right) permutation Vector\nF[:P] (right) permutation Matrix\n\nThe relationship between F and A is\n\nF[:L]*F[:U] == A[F[:p], :]\n\nF further supports the following functions:\n\nSupported function LU LU{T,Tridiagonal{T}}\n/ ✓ \n\\ ✓ ✓\ncond ✓ \ndet ✓ ✓\nlogdet ✓ ✓\nlogabsdet ✓ ✓\nsize ✓ ✓\n\nExample\n\njulia> A = [4 3; 6 3]\n2×2 Array{Int64,2}:\n 4  3\n 6  3\n\njulia> F = lufact(A)\nBase.LinAlg.LU{Float64,Array{Float64,2}} with factors L and U:\n[1.0 0.0; 1.5 1.0]\n[4.0 3.0; 0.0 -1.5]\n\njulia> F[:L] * F[:U] == A[F[:p], :]\ntrue\n\n\n\nlufact(A::SparseMatrixCSC) -> F::UmfpackLU\n\nCompute the LU factorization of a sparse matrix A.\n\nFor sparse A with real or complex element type, the return type of F is UmfpackLU{Tv, Ti}, with Tv = Float64 or Complex128 respectively and Ti is an integer type (Int32 or Int64).\n\nThe individual components of the factorization F can be accessed by indexing:\n\nComponent Description\nF[:L] L (lower triangular) part of LU\nF[:U] U (upper triangular) part of LU\nF[:p] right permutation Vector\nF[:q] left permutation Vector\nF[:Rs] Vector of scaling factors\nF[:(:)] (L,U,p,q,Rs) components\n\nThe relation between F and A is\n\nF[:L]*F[:U] == (F[:Rs] .* A)[F[:p], F[:q]]\n\nF further supports the following functions:\n\n\\\ncond\ndet\n\nnote: Note\nlufact(A::SparseMatrixCSC) uses the UMFPACK library that is part of SuiteSparse. As this library only supports sparse matrices with Float64 or Complex128 elements, lufact converts A into a copy that is of type SparseMatrixCSC{Float64} or SparseMatrixCSC{Complex128} as appropriate.\n\n\n\n"
+    "text": "lufact(A::SparseMatrixCSC) -> F::UmfpackLU\n\nCompute the LU factorization of a sparse matrix A.\n\nFor sparse A with real or complex element type, the return type of F is UmfpackLU{Tv, Ti}, with Tv = Float64 or Complex128 respectively and Ti is an integer type (Int32 or Int64).\n\nThe individual components of the factorization F can be accessed by indexing:\n\nComponent Description\nF[:L] L (lower triangular) part of LU\nF[:U] U (upper triangular) part of LU\nF[:p] right permutation Vector\nF[:q] left permutation Vector\nF[:Rs] Vector of scaling factors\nF[:(:)] (L,U,p,q,Rs) components\n\nThe relation between F and A is\n\nF[:L]*F[:U] == (F[:Rs] .* A)[F[:p], F[:q]]\n\nF further supports the following functions:\n\n\\\ncond\ndet\n\nnote: Note\nlufact(A::SparseMatrixCSC) uses the UMFPACK library that is part of SuiteSparse. As this library only supports sparse matrices with Float64 or Complex128 elements, lufact converts A into a copy that is of type SparseMatrixCSC{Float64} or SparseMatrixCSC{Complex128} as appropriate.\n\n\n\nlufact(A [,pivot=Val{true}]) -> F::LU\n\nCompute the LU factorization of A.\n\nIn most cases, if A is a subtype S of AbstractMatrix{T} with an element type T supporting +, -, * and /, the return type is LU{T,S{T}}. If pivoting is chosen (default) the element type should also support abs and <.\n\nThe individual components of the factorization F can be accessed by indexing:\n\nComponent Description\nF[:L] L (lower triangular) part of LU\nF[:U] U (upper triangular) part of LU\nF[:p] (right) permutation Vector\nF[:P] (right) permutation Matrix\n\nThe relationship between F and A is\n\nF[:L]*F[:U] == A[F[:p], :]\n\nF further supports the following functions:\n\nSupported function LU LU{T,Tridiagonal{T}}\n/ ✓ \n\\ ✓ ✓\ncond ✓ \ndet ✓ ✓\nlogdet ✓ ✓\nlogabsdet ✓ ✓\nsize ✓ ✓\n\nExample\n\njulia> A = [4 3; 6 3]\n2×2 Array{Int64,2}:\n 4  3\n 6  3\n\njulia> F = lufact(A)\nBase.LinAlg.LU{Float64,Array{Float64,2}} with factors L and U:\n[1.0 0.0; 1.5 1.0]\n[4.0 3.0; 0.0 -1.5]\n\njulia> F[:L] * F[:U] == A[F[:p], :]\ntrue\n\n\n\n"
 },
 
 {
@@ -12437,7 +12437,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Linear Algebra",
     "title": "Base.LinAlg.qrfact",
     "category": "Function",
-    "text": "qrfact(A) -> SPQR.Factorization\n\nCompute the QR factorization of a sparse matrix A. A fill-reducing permutation is used. The main application of this type is to solve least squares problems with \\. The function calls the C library SPQR and a few additional functions from the library are wrapped but not exported.\n\n\n\nqrfact(A, pivot=Val{false}) -> F\n\nComputes the QR factorization of A. The return type of F depends on the element type of A and whether pivoting is specified (with pivot==Val{true}).\n\nReturn type eltype(A) pivot Relationship between F and A\nQR not BlasFloat either A==F[:Q]*F[:R]\nQRCompactWY BlasFloat Val{false} A==F[:Q]*F[:R]\nQRPivoted BlasFloat Val{true} A[:,F[:p]]==F[:Q]*F[:R]\n\nBlasFloat refers to any of: Float32, Float64, Complex64 or Complex128.\n\nThe individual components of the factorization F can be accessed by indexing:\n\nComponent Description QR QRCompactWY QRPivoted\nF[:Q] Q (orthogonal/unitary) part of QR ✓ (QRPackedQ) ✓ (QRCompactWYQ) ✓ (QRPackedQ)\nF[:R] R (upper right triangular) part of QR ✓ ✓ ✓\nF[:p] pivot Vector   ✓\nF[:P] (pivot) permutation Matrix   ✓\n\nThe following functions are available for the QR objects: size and \\. When A is rectangular, \\ will return a least squares solution and if the solution is not unique, the one with smallest norm is returned.\n\nMultiplication with respect to either thin or full Q is allowed, i.e. both F[:Q]*F[:R] and F[:Q]*A are supported. A Q matrix can be converted into a regular matrix with full which has a named argument thin.\n\nExample\n\njulia> A = [3.0 -6.0; 4.0 -8.0; 0.0 1.0]\n3×2 Array{Float64,2}:\n 3.0  -6.0\n 4.0  -8.0\n 0.0   1.0\n\njulia> F = qrfact(A)\nBase.LinAlg.QRCompactWY{Float64,Array{Float64,2}} with factors Q and R:\n[-0.6 0.0 0.8; -0.8 0.0 -0.6; 0.0 -1.0 0.0]\n[-5.0 10.0; 0.0 -1.0]\n\njulia> F[:Q] * F[:R] == A\ntrue\n\nnote: Note\nqrfact returns multiple types because LAPACK uses several representations that minimize the memory storage requirements of products of Householder elementary reflectors, so that the Q and R matrices can be stored compactly rather as two separate dense matrices.The data contained in QR or QRPivoted can be used to construct the QRPackedQ type, which is a compact representation of the rotation matrix:Q = prod_i=1^min(mn) (I - tau_i v_i v_i^T)where tau_i is the scale factor and v_i is the projection vector associated with the i^th Householder elementary reflector.The data contained in QRCompactWY can be used to construct the QRCompactWYQ type, which is a compact representation of the rotation matrixQ = I + Y T Y^Twhere Y is m times r lower trapezoidal and T is r times r upper triangular. The compact WY representation [Schreiber1989] is not to be confused with the older, WY representation [Bischof1987]. (The LAPACK documentation uses V in lieu of Y.)[Bischof1987]: C Bischof and C Van Loan, \"The WY representation for products of Householder matrices\", SIAM J Sci Stat Comput 8 (1987), s2-s13. doi:10.1137/0908009[Schreiber1989]: R Schreiber and C Van Loan, \"A storage-efficient WY representation for products of Householder transformations\", SIAM J Sci Stat Comput 10 (1989), 53-57. doi:10.1137/0910005\n\n\n\n"
+    "text": "qrfact(A, pivot=Val{false}) -> F\n\nComputes the QR factorization of A. The return type of F depends on the element type of A and whether pivoting is specified (with pivot==Val{true}).\n\nReturn type eltype(A) pivot Relationship between F and A\nQR not BlasFloat either A==F[:Q]*F[:R]\nQRCompactWY BlasFloat Val{false} A==F[:Q]*F[:R]\nQRPivoted BlasFloat Val{true} A[:,F[:p]]==F[:Q]*F[:R]\n\nBlasFloat refers to any of: Float32, Float64, Complex64 or Complex128.\n\nThe individual components of the factorization F can be accessed by indexing:\n\nComponent Description QR QRCompactWY QRPivoted\nF[:Q] Q (orthogonal/unitary) part of QR ✓ (QRPackedQ) ✓ (QRCompactWYQ) ✓ (QRPackedQ)\nF[:R] R (upper right triangular) part of QR ✓ ✓ ✓\nF[:p] pivot Vector   ✓\nF[:P] (pivot) permutation Matrix   ✓\n\nThe following functions are available for the QR objects: size and \\. When A is rectangular, \\ will return a least squares solution and if the solution is not unique, the one with smallest norm is returned.\n\nMultiplication with respect to either thin or full Q is allowed, i.e. both F[:Q]*F[:R] and F[:Q]*A are supported. A Q matrix can be converted into a regular matrix with full which has a named argument thin.\n\nExample\n\njulia> A = [3.0 -6.0; 4.0 -8.0; 0.0 1.0]\n3×2 Array{Float64,2}:\n 3.0  -6.0\n 4.0  -8.0\n 0.0   1.0\n\njulia> F = qrfact(A)\nBase.LinAlg.QRCompactWY{Float64,Array{Float64,2}} with factors Q and R:\n[-0.6 0.0 0.8; -0.8 0.0 -0.6; 0.0 -1.0 0.0]\n[-5.0 10.0; 0.0 -1.0]\n\njulia> F[:Q] * F[:R] == A\ntrue\n\nnote: Note\nqrfact returns multiple types because LAPACK uses several representations that minimize the memory storage requirements of products of Householder elementary reflectors, so that the Q and R matrices can be stored compactly rather as two separate dense matrices.The data contained in QR or QRPivoted can be used to construct the QRPackedQ type, which is a compact representation of the rotation matrix:Q = prod_i=1^min(mn) (I - tau_i v_i v_i^T)where tau_i is the scale factor and v_i is the projection vector associated with the i^th Householder elementary reflector.The data contained in QRCompactWY can be used to construct the QRCompactWYQ type, which is a compact representation of the rotation matrixQ = I + Y T Y^Twhere Y is m times r lower trapezoidal and T is r times r upper triangular. The compact WY representation [Schreiber1989] is not to be confused with the older, WY representation [Bischof1987]. (The LAPACK documentation uses V in lieu of Y.)[Bischof1987]: C Bischof and C Van Loan, \"The WY representation for products of Householder matrices\", SIAM J Sci Stat Comput 8 (1987), s2-s13. doi:10.1137/0908009[Schreiber1989]: R Schreiber and C Van Loan, \"A storage-efficient WY representation for products of Householder transformations\", SIAM J Sci Stat Comput 10 (1989), 53-57. doi:10.1137/0910005\n\n\n\nqrfact(A) -> SPQR.Factorization\n\nCompute the QR factorization of a sparse matrix A. A fill-reducing permutation is used. The main application of this type is to solve least squares problems with \\. The function calls the C library SPQR and a few additional functions from the library are wrapped but not exported.\n\n\n\n"
 },
 
 {
@@ -12933,7 +12933,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Linear Algebra",
     "title": "Base.LinAlg.isposdef!",
     "category": "Function",
-    "text": "isposdef!(A) -> Bool\n\nTest whether a matrix is positive definite, overwriting A in the process.\n\n\n\n"
+    "text": "isposdef!(A) -> Bool\n\nTest whether a matrix is positive definite, overwriting A in the process.\n\nExample\n\njulia> A = [1. 2.; 2. 50.];\n\njulia> isposdef!(A)\ntrue\n\njulia> A\n2×2 Array{Float64,2}:\n 1.0  2.0\n 2.0  6.78233\n\n\n\n"
 },
 
 {
@@ -13413,7 +13413,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Linear Algebra",
     "title": "Base.LinAlg.BLAS.gbmv",
     "category": "Function",
-    "text": "gbmv(trans, m, kl, ku, alpha, A, x, beta, y)\n\nReturns alpha*A*x or alpha*A'*x according to trans. The matrix A is a general band matrix of dimension m by size(A,2) with kl sub-diagonals and ku super-diagonals. alpha and beta are scalars.\n\n\n\n"
+    "text": "gbmv(trans, m, kl, ku, alpha, A, x)\n\nReturns alpha*A*x or alpha*A'*x according to trans. The matrix A is a general band matrix of dimension m by size(A,2) with kl sub-diagonals and ku super-diagonals, and alpha is a scalar.\n\n\n\n"
 },
 
 {
@@ -14469,7 +14469,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Filesystem",
     "title": "Base.Filesystem.mkdir",
     "category": "Function",
-    "text": "mkdir(path::AbstractString, mode::Unsigned=0o777)\n\nMake a new directory with name path and permissions mode. mode defaults to 0o777, modified by the current file creation mask.\n\n\n\n"
+    "text": "mkdir(path::AbstractString, mode::Unsigned=0o777)\n\nMake a new directory with name path and permissions mode. mode defaults to 0o777, modified by the current file creation mask. This function never creates more than one directory. If the directory already exists, or some intermediate directories do not exist, this function throws an error. See mkpath for a function which creates all required intermediate directories.\n\n\n\n"
 },
 
 {
@@ -15853,7 +15853,7 @@ var documenterSearchIndex = {"docs": [
     "page": "I/O and Network",
     "title": "Base.bind",
     "category": "Function",
-    "text": "bind(socket::Union{UDPSocket, TCPSocket}, host::IPAddr, port::Integer; ipv6only=false, reuseaddr=false, kws...)\n\nBind socket to the given host:port. Note that 0.0.0.0 will listen on all devices.\n\nThe ipv6only parameter disables dual stack mode. If ipv6only=true, only an IPv6 stack is created.\nIf reuseaddr=true, multiple threads or processes can bind to the same address without error if they all set reuseaddr=true, but only the last to bind will receive any traffic.\n\n\n\nbind(chnl::Channel, task::Task)\n\nAssociates the lifetime of chnl with a task. Channel chnl is automatically closed when the task terminates. Any uncaught exception in the task is propagated to all waiters on chnl.\n\nThe chnl object can be explicitly closed independent of task termination. Terminating tasks have no effect on already closed Channel objects.\n\nWhen a channel is bound to multiple tasks, the first task to terminate will close the channel. When multiple channels are bound to the same task, termination of the task will close all of the bound channels.\n\njulia> c = Channel(0);\n\njulia> task = @schedule foreach(i->put!(c, i), 1:4);\n\njulia> bind(c,task);\n\njulia> for i in c\n           @show i\n       end;\ni = 1\ni = 2\ni = 3\ni = 4\n\njulia> isopen(c)\nfalse\n\njulia> c = Channel(0);\n\njulia> task = @schedule (put!(c,1);error(\"foo\"));\n\njulia> bind(c,task);\n\njulia> take!(c)\n1\n\njulia> put!(c,1);\nERROR: foo\nStacktrace:\n [1] check_channel_state(::Channel{Any}) at ./channels.jl:125\n [2] put!(::Channel{Any}, ::Int64) at ./channels.jl:256\n\n\n\n"
+    "text": "bind(socket::Union{UDPSocket, TCPSocket}, host::IPAddr, port::Integer; ipv6only=false, reuseaddr=false, kws...)\n\nBind socket to the given host:port. Note that 0.0.0.0 will listen on all devices.\n\nThe ipv6only parameter disables dual stack mode. If ipv6only=true, only an IPv6 stack is created.\nIf reuseaddr=true, multiple threads or processes can bind to the same address without error if they all set reuseaddr=true, but only the last to bind will receive any traffic.\n\n\n\nbind(chnl::Channel, task::Task)\n\nAssociates the lifetime of chnl with a task. Channel chnl is automatically closed when the task terminates. Any uncaught exception in the task is propagated to all waiters on chnl.\n\nThe chnl object can be explicitly closed independent of task termination. Terminating tasks have no effect on already closed Channel objects.\n\nWhen a channel is bound to multiple tasks, the first task to terminate will close the channel. When multiple channels are bound to the same task, termination of the task will close all of the bound channels.\n\njulia> c = Channel(0);\n\njulia> task = @schedule foreach(i->put!(c, i), 1:4);\n\njulia> bind(c,task);\n\njulia> for i in c\n           @show i\n       end;\ni = 1\ni = 2\ni = 3\ni = 4\n\njulia> isopen(c)\nfalse\n\njulia> c = Channel(0);\n\njulia> task = @schedule (put!(c,1);error(\"foo\"));\n\njulia> bind(c,task);\n\njulia> take!(c)\n1\n\njulia> put!(c,1);\nERROR: foo\nStacktrace:\n [1] check_channel_state(::Channel{Any}) at ./channels.jl:127\n [2] put!(::Channel{Any}, ::Int64) at ./channels.jl:258\n\n\n\n"
 },
 
 {
@@ -16005,7 +16005,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Sorting and Related Functions",
     "title": "Base.Sort.sortrows",
     "category": "Function",
-    "text": "sortrows(A; alg::Algorithm=DEFAULT_UNSTABLE, lt=isless, by=identity, rev::Bool=false, order::Ordering=Forward)\n\nSort the rows of matrix A lexicographically. See sort! for a description of possible keyword arguments.\n\n\n\n"
+    "text": "sortrows(A; alg::Algorithm=DEFAULT_UNSTABLE, lt=isless, by=identity, rev::Bool=false, order::Ordering=Forward)\n\nSort the rows of matrix A lexicographically. See sort! for a description of possible keyword arguments.\n\nExamples\n\njulia> sortrows([7 3 5; -1 6 4; 9 -2 8])\n3×3 Array{Int64,2}:\n -1   6  4\n  7   3  5\n  9  -2  8\n\njulia> sortrows([7 3 5; -1 6 4; 9 -2 8], lt=(x,y)->isless(x[2],y[2]))\n3×3 Array{Int64,2}:\n  9  -2  8\n  7   3  5\n -1   6  4\n\njulia> sortrows([7 3 5; -1 6 4; 9 -2 8], rev=true)\n3×3 Array{Int64,2}:\n  9  -2  8\n  7   3  5\n -1   6  4\n\n\n\n"
 },
 
 {
@@ -16013,7 +16013,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Sorting and Related Functions",
     "title": "Base.Sort.sortcols",
     "category": "Function",
-    "text": "sortcols(A; alg::Algorithm=DEFAULT_UNSTABLE, lt=isless, by=identity, rev::Bool=false, order::Ordering=Forward)\n\nSort the columns of matrix A lexicographically. See sort! for a description of possible keyword arguments.\n\n\n\n"
+    "text": "sortcols(A; alg::Algorithm=DEFAULT_UNSTABLE, lt=isless, by=identity, rev::Bool=false, order::Ordering=Forward)\n\nSort the columns of matrix A lexicographically. See sort! for a description of possible keyword arguments.\n\nExamples\n\njulia> sortcols([7 3 5; 6 -1 -4; 9 -2 8])\n3×3 Array{Int64,2}:\n  3   5  7\n -1  -4  6\n -2   8  9\n\njulia> sortcols([7 3 5; 6 -1 -4; 9 -2 8], alg=InsertionSort, lt=(x,y)->isless(x[2],y[2]))\n3×3 Array{Int64,2}:\n  5   3  7\n -4  -1  6\n  8  -2  9\n\njulia> sortcols([7 3 5; 6 -1 -4; 9 -2 8], rev=true)\n3×3 Array{Int64,2}:\n 7   5   3\n 6  -4  -1\n 9   8  -2\n\n\n\n"
 },
 
 {
@@ -16029,7 +16029,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Sorting and Related Functions",
     "title": "Base.issorted",
     "category": "Function",
-    "text": "issorted(v, lt=isless, by=identity, rev:Bool=false, order::Ordering=Forward)\n\nTest whether a vector is in sorted order. The lt, by and rev keywords modify what order is considered to be sorted just as they do for sort.\n\njulia> issorted([1, 2, 3])\ntrue\n\njulia> issorted([(1, \"b\"), (2, \"a\")], by = x -> x[1])\ntrue\n\njulia> issorted([(1, \"b\"), (2, \"a\")], by = x -> x[2])\nfalse\n\n\n\n"
+    "text": "issorted(v, lt=isless, by=identity, rev:Bool=false, order::Ordering=Forward)\n\nTest whether a vector is in sorted order. The lt, by and rev keywords modify what order is considered to be sorted just as they do for sort.\n\njulia> issorted([1, 2, 3])\ntrue\n\njulia> issorted([(1, \"b\"), (2, \"a\")], by = x -> x[1])\ntrue\n\njulia> issorted([(1, \"b\"), (2, \"a\")], by = x -> x[2])\nfalse\n\njulia> issorted([(1, \"b\"), (2, \"a\")], by = x -> x[2], rev=true)\ntrue\n\n\n\n"
 },
 
 {
@@ -16985,7 +16985,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "stdlib/dates.html#Base.Dates.CompoundPeriod-Tuple{Array{P,1}} where P<:Base.Dates.Period",
+    "location": "stdlib/dates.html#Base.Dates.CompoundPeriod-Tuple{Array{#s19,1} where #s19<:Base.Dates.Period}",
     "page": "Dates and Time",
     "title": "Base.Dates.CompoundPeriod",
     "category": "Method",
@@ -17005,7 +17005,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Dates and Time",
     "title": "Periods",
     "category": "section",
-    "text": "Base.Dates.Period(::Any)\nBase.Dates.CompoundPeriod{P <: Base.Dates.Period}(::Array{P,1})\nBase.Dates.default"
+    "text": "Base.Dates.Period(::Any)\nBase.Dates.CompoundPeriod(::Vector{<:Base.Dates.Period})\nBase.Dates.default"
 },
 
 {
@@ -17489,7 +17489,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "stdlib/c.html#Base.unsafe_copy!-Tuple{Ptr{T},Ptr{T},Any} where T",
+    "location": "stdlib/c.html#Base.unsafe_copy!-Union{Tuple{Ptr{T},Ptr{T},Any}, Tuple{T}} where T",
     "page": "C Interface",
     "title": "Base.unsafe_copy!",
     "category": "Method",
@@ -17529,7 +17529,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "stdlib/c.html#Base.unsafe_wrap-Tuple{Union{Type{Array{T,N} where N}, Type{Array{T,N}}, Type{Array}},Ptr{T},Tuple{Vararg{Int64,N}}} where N where T",
+    "location": "stdlib/c.html#Base.unsafe_wrap-Union{Tuple{N}, Tuple{T}, Tuple{Union{Type{Array{T,N} where N}, Type{Array{T,N}}, Type{Array}},Ptr{T},Tuple{Vararg{Int64,N}}}} where N where T",
     "page": "C Interface",
     "title": "Base.unsafe_wrap",
     "category": "Method",
@@ -18101,7 +18101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "StackTraces",
     "title": "Base.StackTraces.remove_frames!",
     "category": "Function",
-    "text": "remove_frames!(stack::StackTrace, name::Symbol)\n\nTakes a StackTrace (a vector of StackFrames) and a function name (a Symbol) and removes the StackFrame specified by the function name from the StackTrace (also removing all frames above the specified function). Primarily used to remove StackTraces functions from the StackTrace prior to returning it.\n\n\n\n"
+    "text": "remove_frames!(stack::StackTrace, name::Symbol)\n\nTakes a StackTrace (a vector of StackFrames) and a function name (a Symbol) and removes the StackFrame specified by the function name from the StackTrace (also removing all frames above the specified function). Primarily used to remove StackTraces functions from the StackTrace prior to returning it.\n\n\n\nremove_frames!(stack::StackTrace, m::Module)\n\nReturns the StackTrace with all StackFrames from the provided Module removed.\n\n\n\n"
 },
 
 {
@@ -18125,7 +18125,7 @@ var documenterSearchIndex = {"docs": [
     "page": "SIMD Support",
     "title": "SIMD Support",
     "category": "section",
-    "text": "Type VecElement{T} is intended for building libraries of SIMD operations. Practical use of it requires using llvmcall. The type is defined as:immutable VecElement{T}\n    value::T\nendIt has a special compilation rule: a homogeneous tuple of VecElement{T} maps to an LLVM vector type when T is a primitive bits type and the tuple length is in the set {2-6,8-10,16}.At -O3, the compiler might automatically vectorize operations on such tuples. For example, the following program, when compiled with julia -O3 generates two SIMD addition instructions (addps) on x86 systems:const m128 = NTuple{4,VecElement{Float32}}\n\nfunction add(a::m128, b::m128)\n    (VecElement(a[1].value+b[1].value),\n     VecElement(a[2].value+b[2].value),\n     VecElement(a[3].value+b[3].value),\n     VecElement(a[4].value+b[4].value))\nend\n\ntriple(c::m128) = add(add(c,c),c)\n\ncode_native(triple,(m128,))However, since the automatic vectorization cannot be relied upon, future use will mostly be via libraries that use llvmcall."
+    "text": "Type VecElement{T} is intended for building libraries of SIMD operations. Practical use of it requires using llvmcall. The type is defined as:struct VecElement{T}\n    value::T\nendIt has a special compilation rule: a homogeneous tuple of VecElement{T} maps to an LLVM vector type when T is a primitive bits type and the tuple length is in the set {2-6,8-10,16}.At -O3, the compiler might automatically vectorize operations on such tuples. For example, the following program, when compiled with julia -O3 generates two SIMD addition instructions (addps) on x86 systems:const m128 = NTuple{4,VecElement{Float32}}\n\nfunction add(a::m128, b::m128)\n    (VecElement(a[1].value+b[1].value),\n     VecElement(a[2].value+b[2].value),\n     VecElement(a[3].value+b[3].value),\n     VecElement(a[4].value+b[4].value))\nend\n\ntriple(c::m128) = add(add(c,c),c)\n\ncode_native(triple,(m128,))However, since the automatic vectorization cannot be relied upon, future use will mostly be via libraries that use llvmcall."
 },
 
 {
@@ -18309,7 +18309,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Julia ASTs",
     "title": "Method",
     "category": "section",
-    "text": "A unique'd container describing the shared metadata for a single method.name, module, file, line, sig\nMetadata to uniquely identify the method for the computer and the human.\nambig\nCache of other methods that may be ambiguous with this one.\nspecializations\nCache of all MethodInstance ever created for this Method, used to ensure uniqueness. Uniqueness is required for efficiency, especially for incremental precompile and tracking of method invalidation.\nsource\nThe original source code (compressed).\nroots\nPointers to non-AST things that have been interpolated into the AST, required by compression of the AST, type-inference, or the generation of native code.\nnargs, isva, called, isstaged\nDescriptive bit-fields for the source code of this Method.\nmin_world / max_world\nThe range of world ages for which this method is visible to dispatch."
+    "text": "A unique'd container describing the shared metadata for a single method.name, module, file, line, sig\nMetadata to uniquely identify the method for the computer and the human.\nambig\nCache of other methods that may be ambiguous with this one.\nspecializations\nCache of all MethodInstance ever created for this Method, used to ensure uniqueness. Uniqueness is required for efficiency, especially for incremental precompile and tracking of method invalidation.\nsource\nThe original source code (usually compressed).\nroots\nPointers to non-AST things that have been interpolated into the AST, required by compression of the AST, type-inference, or the generation of native code.\nnargs, isva, called, isstaged, pure\nDescriptive bit-fields for the source code of this Method.\nmin_world / max_world\nThe range of world ages for which this method is visible to dispatch."
 },
 
 {
@@ -18325,7 +18325,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Julia ASTs",
     "title": "CodeInfo",
     "category": "section",
-    "text": "A temporary container for holding lowered source code.code\nAn Any array of statements, or a UInt8 array with a compressed representation of the code.\nslotnames\nAn array of symbols giving the name of each slot (argument or local variable).\nslottypes\nAn array of types for the slots.\nslotflags\nA UInt8 array of slot properties, represented as bit flags:\n2  - assigned (only false if there are no assignment statements with this var on the left)\n8  - const (currently unused for local variables)\n16 - statically assigned once\n32 - might be used before assigned. This flag is only valid after type inference.\nssavaluetypes\nEither an array or an Int.\nIf an Int, it gives the number of compiler-inserted temporary locations in the function. If an array, specifies a type for each location.Boolean properties:inferred\nWhether this has been produced by type inference.\ninlineable\nWhether this should be inlined.\npropagate_inbounds\nWhether this should should propagate @inbounds when inlined for the purpose of eliding @boundscheck blocks.\npure\nWhether this is known to be a pure function of its arguments, without respect to the state of the method caches or other mutable global state."
+    "text": "A temporary container for holding lowered source code.code\nAn Any array of statements\nslotnames\nAn array of symbols giving the name of each slot (argument or local variable).\nslottypes\nAn array of types for the slots.\nslotflags\nA UInt8 array of slot properties, represented as bit flags:\n2  - assigned (only false if there are no assignment statements with this var on the left)\n8  - const (currently unused for local variables)\n16 - statically assigned once\n32 - might be used before assigned. This flag is only valid after type inference.\nssavaluetypes\nEither an array or an Int.\nIf an Int, it gives the number of compiler-inserted temporary locations in the function. If an array, specifies a type for each location.Boolean properties:inferred\nWhether this has been produced by type inference.\ninlineable\nWhether this should be inlined.\npropagate_inbounds\nWhether this should should propagate @inbounds when inlined for the purpose of eliding @boundscheck blocks.\npure\nWhether this is known to be a pure function of its arguments, without respect to the state of the method caches or other mutable global state."
 },
 
 {
@@ -18429,7 +18429,7 @@ var documenterSearchIndex = {"docs": [
     "page": "More about types",
     "title": "UnionAll types",
     "category": "section",
-    "text": "Julia's type system can also express an iterated union of types: a union of types over all values of some variable. This is needed to describe parametric types where the values of some parameters are not known.For example, :obj:Array has two parameters as in Array{Int,2}. If we did not know the element type, we could write Array{T,2} where T, which is the union of Array{T,2} for all values of T: Union{Array{Int8,2}, Array{Int16,2}, ...}.Such a type is represented by a UnionAll object, which contains a variable (T in this example, of type TypeVar), and a wrapped type (Array{T,2} in this example).Consider the following methods::f1(A::Array) = 1\nf2(A::Array{Int}) = 2\nf3(A::Array{T}) where T<:Any = 3\nf4(A::Array{Any}) = 4The signature of f3 is a UnionAll type wrapping a tuple type. All but f4 can be called with a = [1,2]; all but f2 can be called with b = Any[1,2].Let's look at these types a little more closely:julia> dump(Array)\nUnionAll\n  var: TypeVar\n    name: Symbol T\n    lb: Core.BottomType Union{}\n    ub: Any\n  body: UnionAll\n    var: TypeVar\n      name: Symbol N\n      lb: Core.BottomType Union{}\n      ub: Any\n    body: Array{T,N} <: DenseArray{T,N}This indicates that Array actually names a UnionAll type. There is one UnionAll type for each parameter, nested. The syntax Array{Int,2} is equivalent to Array{Int}{2}; internally each UnionAll is instantiated with a particular variable value, one at a time, outermost-first. This gives a natural meaning to the omission of trailing type parameters; Array{Int} gives a type equivalent to Array{Int,N} where N.A TypeVar is not itself a type, but rather should be considered part of the structure of a UnionAll type. Type variables have lower and upper bounds on their values (in the fields lb and ub). The symbol name is purely cosmetic. Internally, TypeVars are compared by address, so they are defined as mutable types to ensure that \"different\" type variables can be distinguished. However, by convention they should not be mutated.One can construct TypeVars manually:julia> TypeVar(:V, Signed, Real)\nSigned<:V<:RealThere are convenience versions that allow you to omit any of these arguments except the name symbol.The syntax Array{T} where T<:Integer is lowered tolet T = TypeVar(:T,Integer)\n    UnionAll(T, Array{T})\nendso it is seldom necessary to construct a TypeVar manually (indeed, this is to be avoided)."
+    "text": "Julia's type system can also express an iterated union of types: a union of types over all values of some variable. This is needed to describe parametric types where the values of some parameters are not known.For example, :obj:Array has two parameters as in Array{Int,2}. If we did not know the element type, we could write Array{T,2} where T, which is the union of Array{T,2} for all values of T: Union{Array{Int8,2}, Array{Int16,2}, ...}.Such a type is represented by a UnionAll object, which contains a variable (T in this example, of type TypeVar), and a wrapped type (Array{T,2} in this example).Consider the following methods:f1(A::Array) = 1\nf2(A::Array{Int}) = 2\nf3(A::Array{T}) where {T<:Any} = 3\nf4(A::Array{Any}) = 4The signature of f3 is a UnionAll type wrapping a tuple type. All but f4 can be called with a = [1,2]; all but f2 can be called with b = Any[1,2].Let's look at these types a little more closely:julia> dump(Array)\nUnionAll\n  var: TypeVar\n    name: Symbol T\n    lb: Core.TypeofBottom Union{}\n    ub: Any\n  body: UnionAll\n    var: TypeVar\n      name: Symbol N\n      lb: Core.TypeofBottom Union{}\n      ub: Any\n    body: Array{T,N} <: DenseArray{T,N}This indicates that Array actually names a UnionAll type. There is one UnionAll type for each parameter, nested. The syntax Array{Int,2} is equivalent to Array{Int}{2}; internally each UnionAll is instantiated with a particular variable value, one at a time, outermost-first. This gives a natural meaning to the omission of trailing type parameters; Array{Int} gives a type equivalent to Array{Int,N} where N.A TypeVar is not itself a type, but rather should be considered part of the structure of a UnionAll type. Type variables have lower and upper bounds on their values (in the fields lb and ub). The symbol name is purely cosmetic. Internally, TypeVars are compared by address, so they are defined as mutable types to ensure that \"different\" type variables can be distinguished. However, by convention they should not be mutated.One can construct TypeVars manually:julia> TypeVar(:V, Signed, Real)\nSigned<:V<:RealThere are convenience versions that allow you to omit any of these arguments except the name symbol.The syntax Array{T} where T<:Integer is lowered tolet T = TypeVar(:T,Integer)\n    UnionAll(T, Array{T})\nendso it is seldom necessary to construct a TypeVar manually (indeed, this is to be avoided)."
 },
 
 {
@@ -18445,7 +18445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "More about types",
     "title": "TypeNames",
     "category": "section",
-    "text": "The following two Array types are functionally equivalent, yet print differently:julia> TV, NV = TypeVar(:T), TypeVar(:N)\n(T, N)\n\njulia> Array\nArray\n\njulia> Array{TV,NV}\nArray{T,N}These can be distinguished by examining the name field of the type, which is an object of type TypeName:julia> dump(Array{Int,1}.name)\nTypeName\n  name: Symbol Array\n  module: Module Core\n  names: empty SimpleVector\n  wrapper: UnionAll\n    var: TypeVar\n      name: Symbol T\n      lb: Core.BottomType Union{}\n      ub: Any\n    body: UnionAll\n      var: TypeVar\n        name: Symbol N\n        lb: Core.BottomType Union{}\n        ub: Any\n      body: Array{T,N} <: DenseArray{T,N}\n  cache: SimpleVector\n    ...\n\n  linearcache: SimpleVector\n    ...\n\n  hash: Int64 -7900426068641098781\n  mt: MethodTable\n    name: Symbol Array\n    defs: Void nothing\n    cache: Void nothing\n    max_args: Int64 0\n    kwsorter: #undef\n    module: Module Core\n    : Int64 0\n    : Int64 0In this case, the relevant field is wrapper, which holds a reference to the top-level type used to make new Array types.julia> pointer_from_objref(Array)\nPtr{Void} @0x00007fcc7de64850\n\njulia> pointer_from_objref(Array.body.body.name.wrapper)\nPtr{Void} @0x00007fcc7de64850\n\njulia> pointer_from_objref(Array{TV,NV})\nPtr{Void} @0x00007fcc80c4d930\n\njulia> pointer_from_objref(Array{TV,NV}.name.wrapper)\nPtr{Void} @0x00007fcc7de64850The wrapper field of Array points to itself, but for Array{TV,NV} it points back to the original definition of the type.What about the other fields? hash assigns an integer to each type.  To examine the cache field, it's helpful to pick a type that is less heavily used than Array. Let's first create our own type:julia> type MyType{T,N} end\n\njulia> MyType{Int,2}\nMyType{Int64,2}\n\njulia> MyType{Float32, 5}\nMyType{Float32,5}\n\njulia> MyType.body.body.name.cache\nsvec(MyType{Float32,5}, MyType{Int64,2}, #undef, #undef, #undef, #undef, #undef, #undef)(The cache is pre-allocated to have length 8, but only the first two entries are populated.) Consequently, when you instantiate a parametric type, each concrete type gets saved in a type cache.  However, instances containing free type variables are not cached."
+    "text": "The following two Array types are functionally equivalent, yet print differently:julia> TV, NV = TypeVar(:T), TypeVar(:N)\n(T, N)\n\njulia> Array\nArray\n\njulia> Array{TV,NV}\nArray{T,N}These can be distinguished by examining the name field of the type, which is an object of type TypeName:julia> dump(Array{Int,1}.name)\nTypeName\n  name: Symbol Array\n  module: Module Core\n  names: empty SimpleVector\n  wrapper: UnionAll\n    var: TypeVar\n      name: Symbol T\n      lb: Core.TypeofBottom Union{}\n      ub: Any\n    body: UnionAll\n      var: TypeVar\n        name: Symbol N\n        lb: Core.TypeofBottom Union{}\n        ub: Any\n      body: Array{T,N} <: DenseArray{T,N}\n  cache: SimpleVector\n    ...\n\n  linearcache: SimpleVector\n    ...\n\n  hash: Int64 -7900426068641098781\n  mt: MethodTable\n    name: Symbol Array\n    defs: Void nothing\n    cache: Void nothing\n    max_args: Int64 0\n    kwsorter: #undef\n    module: Module Core\n    : Int64 0\n    : Int64 0In this case, the relevant field is wrapper, which holds a reference to the top-level type used to make new Array types.julia> pointer_from_objref(Array)\nPtr{Void} @0x00007fcc7de64850\n\njulia> pointer_from_objref(Array.body.body.name.wrapper)\nPtr{Void} @0x00007fcc7de64850\n\njulia> pointer_from_objref(Array{TV,NV})\nPtr{Void} @0x00007fcc80c4d930\n\njulia> pointer_from_objref(Array{TV,NV}.name.wrapper)\nPtr{Void} @0x00007fcc7de64850The wrapper field of Array points to itself, but for Array{TV,NV} it points back to the original definition of the type.What about the other fields? hash assigns an integer to each type.  To examine the cache field, it's helpful to pick a type that is less heavily used than Array. Let's first create our own type:julia> type MyType{T,N} end\n\njulia> MyType{Int,2}\nMyType{Int64,2}\n\njulia> MyType{Float32, 5}\nMyType{Float32,5}\n\njulia> MyType.body.body.name.cache\nsvec(MyType{Float32,5}, MyType{Int64,2}, #undef, #undef, #undef, #undef, #undef, #undef)(The cache is pre-allocated to have length 8, but only the first two entries are populated.) Consequently, when you instantiate a parametric type, each concrete type gets saved in a type cache.  However, instances containing free type variables are not cached."
 },
 
 {
@@ -18457,9 +18457,25 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "devdocs/types.html#Introduction-to-the-internal-machinery:-jltypes.c-1",
+    "location": "devdocs/types.html#Diagonal-types-1",
     "page": "More about types",
-    "title": "Introduction to the internal machinery: jltypes.c",
+    "title": "Diagonal types",
+    "category": "section",
+    "text": "Consider the type Tuple{T,T} where T. A method with this signature would look like:f(x::T, y::T) where {T} = ...According to the usual interpretation of a UnionAll type, this T ranges over all types, including Any, so this type should be equivalent to Tuple{Any,Any}. However, this interpretation causes some practical problems.First, a value of T needs to be available inside the method definition. For a call like f(1, 1.0), it's not clear what T should be. It could be Union{Int,Float64}, or perhaps Real. Intuitively, we expect the declaration x::T to mean T === typeof(x). To make sure that invariant holds, we need typeof(x) === typeof(y) === T in this method. That implies the method should only be called for arguments of the exact same type.It turns out that being able to dispatch on whether two values have the same type is very useful (this is used by the promotion system for example), so we have multiple reasons to want a different interpretation of Tuple{T,T} where T. To make this work we add the following rule to subtyping: if a variable occurs more than once in covariant position, it is restricted to ranging over only concrete types. (\"Covariant position\" means that only Tuple and Union types occur between an occurrence of a variable and the UnionAll type that introduces it.) Such variables are called \"diagonal variables\" or \"concrete variables\".So for example, Tuple{T,T} where T can be seen as Union{Tuple{Int8,Int8}, Tuple{Int16,Int16}, ...}, where T ranges over all concrete types. This gives rise to some interesting subtyping results. For example Tuple{Real,Real} is not a subtype of Tuple{T,T} where T, because it includes some types like Tuple{Int8,Int16} where the two elements have different types. Tuple{Real,Real} and Tuple{T,T} where T have the non-trivial intersection Tuple{T,T} where T<:Real. However, Tuple{Real} is a subtype of Tuple{T} where T, because in that case T occurs only once and so is not diagonal.Next consider a signature like the following:f(a::Array{T}, x::T, y::T) where {T} = ...In this case, T occurs in invariant position inside Array{T}. That means whatever type of array is passed unambiguously determines the value of T –- we say T has an equality constraint on it. Therefore in this case the diagonal rule is not really necessary, since the array determines T and we can then allow x and y to be of any subtypes of T. So variables that occur in invariant position are never considered diagonal. This choice of behavior is slightly controversial –- some feel this definition should be written asf(a::Array{T}, x::S, y::S) where {T, S<:T} = ...to clarify whether x and y need to have the same type. In this version of the signature they would, or we could introduce a third variable for the type of y if x and y can have different types.The next complication is the interaction of unions and diagonal variables, e.g.f(x::Union{Void,T}, y::T) where {T} = ...Consider what this declaration means. y has type T. x then can have either the same type T, or else be of type Void. So all of the following calls should match:f(1, 1)\nf(\"\", \"\")\nf(2.0, 2.0)\nf(nothing, 1)\nf(nothing, \"\")\nf(nothing, 2.0)These examples are telling us something: when x is nothing::Void, there are no extra constraints on y. It is as if the method signature had y::Any. This means that whether a variable is diagonal is not a static property based on where it appears in a type. Rather, it depends on where a variable appears when the subtyping algorithm uses it. When x has type Void, we don't need to use the T in Union{Void,T}, so T does not \"occur\". Indeed, we have the following type equivalence:(Tuple{Union{Void,T},T} where T) == Union{Tuple{Void,Any}, Tuple{T,T} where T}"
+},
+
+{
+    "location": "devdocs/types.html#Subtyping-diagonal-variables-1",
+    "page": "More about types",
+    "title": "Subtyping diagonal variables",
+    "category": "section",
+    "text": "The subtyping algorithm for diagonal variables has two components: (1) identifying variable occurrences, and (2) ensuring that diagonal variables range over concrete types only.The first task is accomplished by keeping counters occurs_inv and occurs_cov (in src/subtype.c) for each variable in the environment, tracking the number of invariant and covariant occurrences, respectively. A variable is diagonal when occurs_inv == 0 && occurs_cov > 1.The second task is accomplished by imposing a condition on a variable's lower bound. As the subtyping algorithm runs, it narrows the bounds of each variable (raising lower bounds and lowering upper bounds) to keep track of the range of variable values for which the subtype relation would hold. When we are done evaluating the body of a UnionAll type whose variable is diagonal, we look at the final values of the bounds. Since the variable must be concrete, a contradiction occurs if its lower bound could not be a subtype of a concrete type. For example, an abstract type like AbstractArray cannot be a subtype of a concrete type, but a concrete type like Int can be, and the empty type Bottom can be as well. If a lower bound fails this test the algorithm stops with the answer false.For example, in the problem Tuple{Int,String} <: Tuple{T,T} where T, we derive that this would be true if T were a supertype of Union{Int,String}. However, Union{Int,String} is an abstract type, so the relation does not hold.This concreteness test is done by the function is_leaf_bound. Note that this test is slightly different from jl_is_leaf_type, since it also returns true for Bottom. Currently this function is heuristic, and does not catch all possible concrete types. The difficulty is that whether a lower bound is concrete might depend on the values of other type variable bounds. For example, Vector{T} is equivalent to the concrete type Vector{Int} only if both the upper and lower bounds of T equal Int. We have not yet worked out a complete algorithm for this."
+},
+
+{
+    "location": "devdocs/types.html#Introduction-to-the-internal-machinery-1",
+    "page": "More about types",
+    "title": "Introduction to the internal machinery",
     "category": "section",
     "text": "Most operations for dealing with types are found in the files jltypes.c and subtype.c. A good way to start is to watch subtyping in action. Build Julia with make debug and fire up Julia within a debugger. gdb debugging tips has some tips which may be useful.Because the subtyping code is used heavily in the REPL itself–and hence breakpoints in this code get triggered often–it will be easiest if you make the following definition:julia> function mysubtype(a,b)\n           ccall(:jl_breakpoint, Void, (Any,), nothing)\n           issubtype(a, b)\n       endand then set a breakpoint in jl_breakpoint.  Once this breakpoint gets triggered, you can set breakpoints in other functions.As a warm-up, try the following:mysubtype(Tuple{Int,Float64}, Tuple{Integer,Real})We can make it more interesting by trying a more complex case:mysubtype(Tuple{Array{Int,2}, Int8}, Tuple{Array{T}, T} where T)"
 },
@@ -18469,7 +18485,7 @@ var documenterSearchIndex = {"docs": [
     "page": "More about types",
     "title": "Subtyping and method sorting",
     "category": "section",
-    "text": "The type_morespecific functions are used for imposing a partial order on functions in method tables (from most-to-least specific). Note that jl_type_morespecific(a,b) really means \"is a at least as specific as b?\" and not \"is a strictly more specific than b?\"If a is a subtype of b, then it is automatically considered more specific. From there, type_morespecific employs some less formal rules. For example, subtype is sensitive to the number of arguments, but type_morespecific may not be. In particular, Tuple{Int,AbstractFloat} is more specific than Tuple{Integer}, even though it is not a subtype.  (Of Tuple{Int,AbstractFloat} and Tuple{Integer,Float64}, neither is more specific than the other.)  Likewise, Tuple{Int,Vararg{Int}} is not a subtype of Tuple{Integer}, but it is considered more specific. However, morespecific does get a bonus for length: in particular, Tuple{Int,Int} is more specific than Tuple{Int,Vararg{Int}}.If you're debugging how methods get sorted, it can be convenient to define the function:type_morespecific(a, b) = ccall(:jl_type_morespecific, Cint, (Any,Any), a, b)which allows you to test whether tuple type a is more specific than tuple type b."
+    "text": "The type_morespecific functions are used for imposing a partial order on functions in method tables (from most-to-least specific). Specificity is strict; if a is more specific than b, then a does not equal b and b is not more specific than a.If a is a strict subtype of b, then it is automatically considered more specific. From there, type_morespecific employs some less formal rules. For example, subtype is sensitive to the number of arguments, but type_morespecific may not be. In particular, Tuple{Int,AbstractFloat} is more specific than Tuple{Integer}, even though it is not a subtype.  (Of Tuple{Int,AbstractFloat} and Tuple{Integer,Float64}, neither is more specific than the other.)  Likewise, Tuple{Int,Vararg{Int}} is not a subtype of Tuple{Integer}, but it is considered more specific. However, morespecific does get a bonus for length: in particular, Tuple{Int,Int} is more specific than Tuple{Int,Vararg{Int}}.If you're debugging how methods get sorted, it can be convenient to define the function:type_morespecific(a, b) = ccall(:jl_type_morespecific, Cint, (Any,Any), a, b)which allows you to test whether tuple type a is more specific than tuple type b."
 },
 
 {
@@ -18717,7 +18733,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Julia Functions",
     "title": "Closures",
     "category": "section",
-    "text": "A closure is simply a callable object with field names corresponding to captured variables. For example, the following code:function adder(x)\n    return y->x+y\nendis lowered to (roughly):immutable ##1{T}\n    x::T\nend\n\n(_::##1)(y) = _.x + y\n\nfunction adder(x)\n    return ##1(x)\nend"
+    "text": "A closure is simply a callable object with field names corresponding to captured variables. For example, the following code:function adder(x)\n    return y->x+y\nendis lowered to (roughly):struct ##1{T}\n    x::T\nend\n\n(_::##1)(y) = _.x + y\n\nfunction adder(x)\n    return ##1(x)\nend"
 },
 
 {
@@ -18941,7 +18957,7 @@ var documenterSearchIndex = {"docs": [
     "page": "SubArrays",
     "title": "Type parameters and fields",
     "category": "section",
-    "text": "The strategy adopted is first and foremost expressed in the definition of the type:immutable SubArray{T,N,P,I,L} <: AbstractArray{T,N}\n    parent::P\n    indexes::I\n    offset1::Int       # for linear indexing and pointer, only valid when L==true\n    stride1::Int       # used only for linear indexing\n    ...\nendSubArray has 5 type parameters.  The first two are the standard element type and dimensionality.  The next is the type of the parent AbstractArray.  The most heavily-used is the fourth parameter, a Tuple of the types of the indices for each dimension. The final one, L, is only provided as a convenience for dispatch; it's a boolean that represents whether the index types support fast linear indexing. More on that later.If in our example above A is a Array{Float64, 3}, our S1 case above would be a SubArray{Int64,2,Array{Int64,3},Tuple{Colon,Int64,UnitRange{Int64}},false}. Note in particular the tuple parameter, which stores the types of the indices used to create S1.  Likewise,julia> S1.indexes\n(Colon(),5,2:6)Storing these values allows index replacement, and having the types encoded as parameters allows one to dispatch to efficient algorithms."
+    "text": "The strategy adopted is first and foremost expressed in the definition of the type:struct SubArray{T,N,P,I,L} <: AbstractArray{T,N}\n    parent::P\n    indexes::I\n    offset1::Int       # for linear indexing and pointer, only valid when L==true\n    stride1::Int       # used only for linear indexing\n    ...\nendSubArray has 5 type parameters.  The first two are the standard element type and dimensionality.  The next is the type of the parent AbstractArray.  The most heavily-used is the fourth parameter, a Tuple of the types of the indices for each dimension. The final one, L, is only provided as a convenience for dispatch; it's a boolean that represents whether the index types support fast linear indexing. More on that later.If in our example above A is a Array{Float64, 3}, our S1 case above would be a SubArray{Int64,2,Array{Int64,3},Tuple{Colon,Int64,UnitRange{Int64}},false}. Note in particular the tuple parameter, which stores the types of the indices used to create S1.  Likewise,julia> S1.indexes\n(Colon(),5,2:6)Storing these values allows index replacement, and having the types encoded as parameters allows one to dispatch to efficient algorithms."
 },
 
 {
@@ -19313,6 +19329,862 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "devdocs/libgit2.html#",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2-1",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2",
+    "category": "section",
+    "text": "The LibGit2 module provides bindings to libgit2, a portable C library that implements core functionality for the Git version control system. These bindings are currently used to power Julia's package manager. It is expected that this module will eventually be moved into a separate package."
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.AbstractCredentials",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.AbstractCredentials",
+    "category": "Type",
+    "text": "Abstract credentials payload\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.Buffer",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.Buffer",
+    "category": "Type",
+    "text": "LibGit2.Buffer\n\nA data buffer for exporting data from libgit2. Matches the git_buf struct.\n\nWhen fetching data from LibGit2, a typical usage would look like:\n\nbuf_ref = Ref(Buffer())\n@check ccall(..., (Ptr{Buffer},), buf_ref)\n# operation on buf_ref\nfree(buf_ref)\n\nIn particular, note that LibGit2.free should be called afterward on the Ref object.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.CachedCredentials",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.CachedCredentials",
+    "category": "Type",
+    "text": "Credentials that support caching\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.CheckoutOptions",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.CheckoutOptions",
+    "category": "Type",
+    "text": "LibGit2.CheckoutOptions\n\nMatches the git_checkout_options struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.CloneOptions",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.CloneOptions",
+    "category": "Type",
+    "text": "LibGit2.CloneOptions\n\nMatches the git_clone_options struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.DiffDelta",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.DiffDelta",
+    "category": "Type",
+    "text": "LibGit2.DiffDelta\n\nDescription of changes to one entry. Matches the git_diff_file struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.DiffFile",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.DiffFile",
+    "category": "Type",
+    "text": "LibGit2.DiffFile\n\nDescription of one side of a delta. Matches the git_diff_file struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.DiffOptionsStruct",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.DiffOptionsStruct",
+    "category": "Type",
+    "text": "LibGit2.DiffOptionsStruct\n\nMatches the git_diff_options struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.FetchHead",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.FetchHead",
+    "category": "Type",
+    "text": "LibGit2.FetchHead\n\nContains the information about HEAD during a fetch, including the name and URL of the branch fetched from, the oid of the HEAD, and whether the fetched HEAD has been merged locally.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.FetchOptions",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.FetchOptions",
+    "category": "Type",
+    "text": "LibGit2.FetchOptions\n\nMatches the git_fetch_options struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitBlob",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitBlob",
+    "category": "Type",
+    "text": "GitBlob(repo::GitRepo, hash::AbstractGitHash)\nGitBlob(repo::GitRepo, spec::AbstractString)\n\nReturn a GitBlob object from repo specified by hash/spec.\n\nhash is a full (GitHash) or partial (GitShortHash) hash.\nspec is a textual specification: see https://git-scm.com/docs/git-rev-parse.html#_specifying_revisions for a full list.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitCommit",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitCommit",
+    "category": "Type",
+    "text": "GitCommit(repo::GitRepo, hash::AbstractGitHash)\nGitCommit(repo::GitRepo, spec::AbstractString)\n\nReturn a GitCommit object from repo specified by hash/spec.\n\nhash is a full (GitHash) or partial (GitShortHash) hash.\nspec is a textual specification: see https://git-scm.com/docs/git-rev-parse.html#_specifying_revisions for a full list.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitHash",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitHash",
+    "category": "Type",
+    "text": "GitHash\n\nA git object identifier, based on the sha-1 hash. It is a 20 byte string (40 hex digits) used to identify a GitObject in a repository.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitObject",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitObject",
+    "category": "Type",
+    "text": "GitObject(repo::GitRepo, hash::AbstractGitHash)\nGitObject(repo::GitRepo, spec::AbstractString)\n\nReturn the specified object (GitCommit, GitBlob, GitTree or GitTag) from repo specified by hash/spec.\n\nhash is a full (GitHash) or partial (GitShortHash) hash.\nspec is a textual specification: see https://git-scm.com/docs/git-rev-parse.html#_specifying_revisions for a full list.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitRemote",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitRemote",
+    "category": "Type",
+    "text": "GitRemote(repo::GitRepo, rmt_name::AbstractString, rmt_url::AbstractString) -> GitRemote\n\nLook up a remote git repository using its name and URL. Uses the default fetch refspec.\n\n\n\nGitRemote(repo::GitRepo, rmt_name::AbstractString, rmt_url::AbstractString, fetch_spec::AbstractString) -> GitRemote\n\nLook up a remote git repository using the repository's name and URL, as well as specifications for how to fetch from the remote (e.g. which remote branch to fetch from).\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitRemoteAnon",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitRemoteAnon",
+    "category": "Function",
+    "text": "GitRemoteAnon(repo::GitRepo, url::AbstractString) -> GitRemote\n\nLook up a remote git repository using only its URL, not its name.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitRepo",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitRepo",
+    "category": "Type",
+    "text": "LibGit2.GitRepo(path::AbstractString)\n\nOpens a git repository at path.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitRepoExt",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitRepoExt",
+    "category": "Function",
+    "text": "LibGit2.GitRepoExt(path::AbstractString, flags::Cuint = Cuint(Consts.REPOSITORY_OPEN_DEFAULT))\n\nOpens a git repository at path with extended controls (for instance, if the current user must be a member of a special access group to read path).\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitShortHash",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitShortHash",
+    "category": "Type",
+    "text": "GitShortHash\n\nThis is a shortened form of GitHash, which can be used to identify a git object when it is unique.\n\nInternally it is stored as two fields: a full-size GitHash (hash) and a length (len). Only the initial len hex digits of hash are used.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitSignature",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitSignature",
+    "category": "Type",
+    "text": "LibGit2.GitSignature\n\nThis is a Julia wrapper around a pointer to a git_signature object.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitStatus",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitStatus",
+    "category": "Type",
+    "text": "LibGit2.GitStatus(repo::GitRepo; status_opts=StatusOptions())\n\nCollect information about the status of each file in the git repository repo (e.g. is the file modified, staged, etc.). status_opts can be used to set various options, for instance whether or not to look at untracked files or whether to include submodules or not.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitTag",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitTag",
+    "category": "Type",
+    "text": "GitTag(repo::GitRepo, hash::AbstractGitHash)\nGitTag(repo::GitRepo, spec::AbstractString)\n\nReturn a GitTag object from repo specified by hash/spec.\n\nhash is a full (GitHash) or partial (GitShortHash) hash.\nspec is a textual specification: see https://git-scm.com/docs/git-rev-parse.html#_specifying_revisions for a full list.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.GitTree",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.GitTree",
+    "category": "Type",
+    "text": "GitTree(repo::GitRepo, hash::AbstractGitHash)\nGitTree(repo::GitRepo, spec::AbstractString)\n\nReturn a GitTree object from repo specified by hash/spec.\n\nhash is a full (GitHash) or partial (GitShortHash) hash.\nspec is a textual specification: see https://git-scm.com/docs/git-rev-parse.html#_specifying_revisions for a full list.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.IndexEntry",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.IndexEntry",
+    "category": "Type",
+    "text": "LibGit2.IndexEntry\n\nIn-memory representation of a file entry in the index. Matches the git_index_entry struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.IndexTime",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.IndexTime",
+    "category": "Type",
+    "text": "LibGit2.IndexTime\n\nMatches the git_index_time struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.MergeOptions",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.MergeOptions",
+    "category": "Type",
+    "text": "LibGit2.MergeOptions\n\nMatches the git_merge_options struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.ProxyOptions",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.ProxyOptions",
+    "category": "Type",
+    "text": "LibGit2.ProxyOptions\n\nOptions for connecting through a proxy.\n\nMatches the git_proxy_options struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.PushOptions",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.PushOptions",
+    "category": "Type",
+    "text": "LibGit2.PushOptions\n\nMatches the git_push_options struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.RebaseOperation",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.RebaseOperation",
+    "category": "Type",
+    "text": "LibGit2.RebaseOperation\n\nDescribes a single instruction/operation to be performed during the rebase. Matches the git_rebase_operation struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.RebaseOptions",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.RebaseOptions",
+    "category": "Type",
+    "text": "LibGit2.RebaseOptions\n\nMatches the git_rebase_options struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.RemoteCallbacks",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.RemoteCallbacks",
+    "category": "Type",
+    "text": "LibGit2.RemoteCallbacks\n\nCallback settings. Matches the git_remote_callbacks struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.SSHCredentials",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.SSHCredentials",
+    "category": "Type",
+    "text": "SSH credentials type\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.SignatureStruct",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.SignatureStruct",
+    "category": "Type",
+    "text": "LibGit2.SignatureStruct\n\nAn action signature (e.g. for committers, taggers, etc). Matches the git_signature struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.StatusEntry",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.StatusEntry",
+    "category": "Type",
+    "text": "LibGit2.StatusEntry\n\nProviding the differences between the file as it exists in HEAD and the index, and providing the differences between the index and the working directory. Matches the git_status_entry struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.StatusOptions",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.StatusOptions",
+    "category": "Type",
+    "text": "LibGit2.StatusOptions\n\nOptions to control how git_status_foreach_ext() will issue callbacks. Matches the git_status_opt_t struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.StrArrayStruct",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.StrArrayStruct",
+    "category": "Type",
+    "text": "LibGit2.StrArrayStruct\n\nA LibGit2 representation of an array of strings. Matches the git_strarray struct.\n\nWhen fetching data from LibGit2, a typical usage would look like:\n\nsa_ref = Ref(StrArrayStruct())\n@check ccall(..., (Ptr{StrArrayStruct},), sa_ref)\nres = convert(Vector{String}, sa_ref[])\nfree(sa_ref)\n\nIn particular, note that LibGit2.free should be called afterward on the Ref object.\n\nConversely, when passing a vector of strings to LibGit2, it is generally simplest to rely on implicit conversion:\n\nstrs = String[...]\n@check ccall(..., (Ptr{StrArrayStruct},), strs)\n\nNote that no call to free is required as the data is allocated by Julia.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.TimeStruct",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.TimeStruct",
+    "category": "Type",
+    "text": "LibGit2.TimeStruct\n\nTime in a signature. Matches the git_time struct.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.UserPasswordCredentials",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.UserPasswordCredentials",
+    "category": "Type",
+    "text": "Credentials that support only user and password parameters\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.add_fetch!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.add_fetch!",
+    "category": "Function",
+    "text": "add_fetch!(repo::GitRepo, rmt::GitRemote, fetch_spec::String)\n\nAdd a fetch refspec for the specified rmt. This refspec will contain information about which branch(es) to fetch from.\n\nExample\n\njulia> LibGit2.add_fetch!(repo, remote, \"upstream\");\n\njulia> LibGit2.fetch_refspecs(remote)\nString[\"+refs/heads/*:refs/remotes/upstream/*\"]\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.add_push!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.add_push!",
+    "category": "Function",
+    "text": "add_push!(repo::GitRepo, rmt::GitRemote, push_spec::String)\n\nAdd a push refspec for the specified rmt. This refspec will contain information about which branch(es) to push to.\n\nExample\n\njulia> LibGit2.add_push!(repo, remote, \"refs/heads/master\");\n\njulia> remote = LibGit2.get(LibGit2.GitRemote, repo, branch);\n\njulia> LibGit2.push_refspecs(remote)\nString[\"refs/heads/master\"]\n\nnote: Note\nYou may need to close and reopen the GitRemote in question after updating its push refspecs in order for the change to take effect and for calls to push to work.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.addblob!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.addblob!",
+    "category": "Function",
+    "text": "LibGit2.addblob!(repo::GitRepo, path::AbstractString)\n\nReads the file at path and adds it to the object database of repo as a loose blob. Returns the GitHash of the resulting blob.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.authors",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.authors",
+    "category": "Function",
+    "text": "authors(repo::GitRepo) -> Vector{Signature}\n\nReturns all authors of commits to the repo repository.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.branch",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.branch",
+    "category": "Function",
+    "text": "branch(repo::GitRepo)\n\nEquivalent to git branch. Create a new branch from the current HEAD.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.branch!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.branch!",
+    "category": "Function",
+    "text": "branch!(repo::GitRepo, branch_name::AbstractString, commit::AbstractString=\"\"; kwargs...)\n\nCheckout a new git branch in the repo repository. commit is the GitHash, in string form, which will be the start of the new branch.\n\nThe keyword arguments are:\n\ntrack::AbstractString=\"\": the name of the remote branch this new branch should track, if any. If empty (the default), no remote branch will be tracked.\nforce::Bool=false: if true, branch creation will be forced.\nset_head::Bool=true: if true, after the branch creation finishes the branch head will be set as the HEAD of repo.\n\nEquivalent to git checkout [-b|-B] <branch_name> [<commit>] [--track <track>].\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.checkout!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.checkout!",
+    "category": "Function",
+    "text": "checkout!(repo::GitRepo, commit::AbstractString=\"\"; force::Bool=true)\n\nEquivalent to git checkout [-f] --detach <commit>. Checkout the git commit commit (a GitHash in string form) in repo. If force is true, force the checkout and discard any current changes. Note that this detaches the current HEAD.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.checkused!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.checkused!",
+    "category": "Function",
+    "text": "Checks if credentials were used\n\n\n\nChecks if credentials were used or failed authentication, see LibGit2.credentials_callback\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.clone",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.clone",
+    "category": "Function",
+    "text": "clone(repo_url::AbstractString, repo_path::AbstractString; kwargs...)\n\nClone a remote repository located at repo_url to the local filesystem location repo_path.\n\nThe keyword arguments are:\n\nbranch::AbstractString=\"\": which branch of the remote to clone, if not the default repository branch (usually master).\nisbare::Bool=false: if true, clone the remote as a bare repository, which will make repo_path itself the git directory instead of repo_path/.git. This means that a working tree cannot be checked out. Plays the role of the git CLI argument --bare.\nremote_cb::Ptr{Void}=C_NULL: a callback which will be used to create the remote before it is cloned. If C_NULL (the default), no attempt will be made to create the remote - it will be assumed to already exist.\npayload::Nullable{P<:AbstractCredentials}=Nullable{AbstractCredentials}(): provides credentials if necessary, for instance if the remote is a private repository.\n\nEquivalent to git clone [-b <branch>] [--bare] <repo_url> <repo_path>.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.commit",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.commit",
+    "category": "Function",
+    "text": "Wrapper around git_commit_create \n\n\n\nCommit changes to repository\n\n\n\nLibGit2.commit(rb::GitRebase, sig::GitSignature)\n\nCommits the current patch to the rebase rb, using sig as the committer. Is silent if the commit has already been applied.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.create_branch",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.create_branch",
+    "category": "Function",
+    "text": "LibGit2.create_branch(repo::GitRepo, bname::AbstractString, commit_obj::GitCommit; force::Bool=false)\n\nCreate a new branch in the repository repo with name bname, which points to commit commit_obj (which has to be part of repo). If force is true, overwrite an existing branch named bname if it exists. If force is false and a branch already exists named bname, this function will throw an error.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.credentials_callback",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.credentials_callback",
+    "category": "Function",
+    "text": "Credentials callback function\n\nFunction provides different credential acquisition functionality w.r.t. a connection protocol. If a payload is provided then payload_ptr should contain a LibGit2.AbstractCredentials object.\n\nFor LibGit2.Consts.CREDTYPE_USERPASS_PLAINTEXT type, if the payload contains fields: user & pass, they are used to create authentication credentials. Empty user name and password trigger an authentication error.\n\nFor LibGit2.Consts.CREDTYPE_SSH_KEY type, if the payload contains fields: user, prvkey, pubkey & pass, they are used to create authentication credentials. Empty user name triggers an authentication error.\n\nCredentials are checked in the following order (if supported):\n\nssh key pair (ssh-agent if specified in payload's usesshagent field)\nplain text\n\nNote: Due to the specifics of the libgit2 authentication procedure, when authentication fails, this function is called again without any indication whether authentication was successful or not. To avoid an infinite loop from repeatedly using the same faulty credentials, the checkused! function can be called. This function returns true if the credentials were used. Using credentials triggers a user prompt for (re)entering required information. UserPasswordCredentials and CachedCredentials are implemented using a call counting strategy that prevents repeated usage of faulty credentials.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.credentials_cb",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.credentials_cb",
+    "category": "Function",
+    "text": "C function pointer for credentials_callback\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.default_signature",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.default_signature",
+    "category": "Function",
+    "text": "Return signature object. Free it after use.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.delete_branch",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.delete_branch",
+    "category": "Function",
+    "text": "LibGit2.delete_branch(branch::GitReference)\n\nDelete the branch pointed to by branch.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.diff_files",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.diff_files",
+    "category": "Function",
+    "text": "diff_files(repo::GitRepo, branch1::AbstractString, branch2::AbstractString; kwarg...) -> Vector{AbstractString}\n\nShow which files have changed in the git repository repo between branches branch1 and branch2.\n\nThe keyword argument is:\n\nfilter::Set{Consts.DELTA_STATUS}=Set([Consts.DELTA_ADDED, Consts.DELTA_MODIFIED, Consts.DELTA_DELETED])), and it sets options for the diff. The default is to show files added, modified, or deleted.\n\nReturns only the names of the files which have changed, not their contents.\n\nExample\n\nLibGit2.branch!(repo, \"branch/a\")\nLibGit2.branch!(repo, \"branch/b\")\n# add a file to repo\nopen(joinpath(LibGit2.path(repo),\"file\"),\"w\") do f\n    write(f, \"hello repo\n\")\nend\nLibGit2.add!(repo, \"file\")\nLibGit2.commit(repo, \"add file\")\n# returns [\"file\"]\nfilt = Set([LibGit2.Consts.DELTA_ADDED])\nfiles = LibGit2.diff_files(repo, \"branch/a\", \"branch/b\", filter=filt)\n# returns [] because existing files weren't modified\nfilt = Set([LibGit2.Consts.DELTA_MODIFIED])\nfiles = LibGit2.diff_files(repo, \"branch/a\", \"branch/b\", filter=filt)\n\nEquivalent to git diff --name-only --diff-filter=<filter> <branch1> <branch2>.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.fetch",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.fetch",
+    "category": "Function",
+    "text": "fetch(rmt::GitRemote, refspecs; options::FetchOptions=FetchOptions(), msg=\"\")\n\nFetch from the specified rmt remote git repository, using refspecs to determine which remote branch(es) to fetch. The keyword arguments are:\n\noptions: determines the options for the fetch, e.g. whether to prune afterwards.\nmsg: a message to insert into the reflogs.\n\n\n\nfetch(repo::GitRepo; kwargs...)\n\nFetches updates from an upstream of the repository repo.\n\nThe keyword arguments are:\n\nremote::AbstractString=\"origin\": which remote, specified by name, of repo to fetch from. If this is empty, the URL will be used to construct an anonymous remote.\nremoteurl::AbstractString=\"\": the URL of remote. If not specified, will be assumed based on the given name of remote.\nrefspecs=AbstractString[]: determines properties of the fetch.\npayload=Nullable{AbstractCredentials}(): provides credentials, if necessary, for instance if remote is a private repository.\n\nEquivalent to git fetch [<remoteurl>|<repo>] [<refspecs>].\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.fetch_refspecs",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.fetch_refspecs",
+    "category": "Function",
+    "text": "fetch_refspecs(rmt::GitRemote) -> Vector{String}\n\nGet the fetch refspecs for the specified rmt. These refspecs contain information about which branch(es) to fetch from.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.fetchhead_foreach_cb",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.fetchhead_foreach_cb",
+    "category": "Function",
+    "text": "C function pointer for fetchhead_foreach_callback\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.ffmerge!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.ffmerge!",
+    "category": "Function",
+    "text": "Fastforward merge changes into current head \n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.fullname",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.fullname",
+    "category": "Function",
+    "text": "LibGit2.fullname(ref::GitReference)\n\nReturn the name of the reference pointed to by the symbolic reference ref. If ref is not a symbolic reference, returns an empty string.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.get_creds!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.get_creds!",
+    "category": "Function",
+    "text": "Obtain the cached credentials for the given host+protocol (credid), or return and store the default if not found\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.gitdir",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.gitdir",
+    "category": "Function",
+    "text": "LibGit2.gitdir(repo::GitRepo)\n\nReturns the location of the \"git\" files of repo:\n\nfor normal repositories, this is the location of the .git folder.\nfor bare repositories, this is the location of the repository itself.\n\nSee also workdir, path\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.head",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.head",
+    "category": "Function",
+    "text": "LibGit2.head(repo::GitRepo) -> GitReference\n\nReturns a GitReference to the current HEAD of repo.\n\n\n\nhead(pkg::AbstractString) -> String\n\nReturn current HEAD GitHash of the pkg repo as a string.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.head!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.head!",
+    "category": "Function",
+    "text": "LibGit2.head!(repo::GitRepo, ref::GitReference) -> GitReference\n\nSet the HEAD of repo to the object pointed to by ref.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.head_oid",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.head_oid",
+    "category": "Function",
+    "text": "LibGit2.head_oid(repo::GitRepo) -> GitHash\n\nLookup the object id of the current HEAD of git repository repo.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.headname",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.headname",
+    "category": "Function",
+    "text": "LibGit2.headname(repo::GitRepo)\n\nLookup the name of the current HEAD of git repository repo. If repo is currently detached, returns the name of the HEAD it's detached from.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.init",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.init",
+    "category": "Function",
+    "text": "LibGit2.init(path::AbstractString, bare::Bool=false) -> GitRepo\n\nOpens a new git repository at path. If bare is false, the working tree will be created in path/.git. If bare is true, no working directory will be created.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.is_ancestor_of",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.is_ancestor_of",
+    "category": "Function",
+    "text": "is_ancestor_of(a::AbstractString, b::AbstractString, repo::GitRepo) -> Bool\n\nReturns true if a, a GitHash in string form, is an ancestor of b, a GitHash in string form.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.isbinary",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.isbinary",
+    "category": "Function",
+    "text": "Use a heuristic to guess if a file is binary: searching for NULL bytes and looking for a reasonable ratio of printable to non-printable characters among the first 8000 bytes.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.iscommit",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.iscommit",
+    "category": "Function",
+    "text": "iscommit(id::AbstractString, repo::GitRepo) -> Bool\n\nChecks if commit id (which is a GitHash in string form) is in the repository.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.isdiff",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.isdiff",
+    "category": "Function",
+    "text": "LibGit2.isdiff(repo::GitRepo, treeish::AbstractString, pathspecs::AbstractString=\"\"; cached::Bool=false)\n\nChecks if there are any differences between the tree specified by treeish and the tracked files in the working tree (if cached=false) or the index (if cached=true). pathspecs are the specifications for options for the diff.\n\nExample\n\nrepo = LibGit2.GitRepo(repo_path)\nLibGit2.isdiff(repo, \"HEAD\") # should be false\nopen(joinpath(repo_path, new_file), \"a\") do f\n    println(f, \"here's my cool new file\")\nend\nLibGit2.isdiff(repo, \"HEAD\") # now true\n\nEquivalent to git diff-index <treeish> [-- <pathspecs>].\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.isdirty",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.isdirty",
+    "category": "Function",
+    "text": "LibGit2.isdirty(repo::GitRepo, pathspecs::AbstractString=\"\"; cached::Bool=false) -> Bool\n\nChecks if there have been any changes to tracked files in the working tree (if cached=false) or the index (if cached=true). pathspecs are the specifications for options for the diff.\n\nExample\n\nrepo = LibGit2.GitRepo(repo_path)\nLibGit2.isdirty(repo) # should be false\nopen(joinpath(repo_path, new_file), \"a\") do f\n    println(f, \"here's my cool new file\")\nend\nLibGit2.isdirty(repo) # now true\nLibGit2.isdirty(repo, new_file) # now true\n\nEquivalent to git diff-index HEAD [-- <pathspecs>].\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.isorphan",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.isorphan",
+    "category": "Function",
+    "text": "LibGit2.isorphan(repo::GitRepo)\n\nChecks if the current branch is an \"orphan\" branch, i.e. has no commits. The first commit to this branch will have no parents.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.lookup_branch",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.lookup_branch",
+    "category": "Function",
+    "text": "lookup_branch(repo::GitRepo, branch_name::AbstractString, remote::Bool=false) -> Nullable{GitReference}\n\nDetermine if the branch specified by branch_name exists in the repository repo. If remote is true, repo is assumed to be a remote git repository. Otherwise, it is part of the local filesystem.\n\nlookup_branch returns a Nullable, which will be null if the requested branch does not exist yet. If the branch does exist, the Nullable contains a GitReference to the branch.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.mirror_callback",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.mirror_callback",
+    "category": "Function",
+    "text": "Mirror callback function\n\nFunction sets +refs/*:refs/* refspecs and mirror flag for remote reference.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.mirror_cb",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.mirror_cb",
+    "category": "Function",
+    "text": "C function pointer for mirror_callback\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.name",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.name",
+    "category": "Function",
+    "text": "LibGit2.name(ref::GitReference)\n\nReturn the full name of ref.\n\n\n\nname(rmt::GitRemote)\n\nGet the name of a remote repository, for instance \"origin\". If the remote is anonymous (see GitRemoteAnon) the name will be an empty string \"\".\n\n\n\nLibGit2.name(tag::GitTag)\n\nThe name of tag (e.g. \"v0.5\").\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.need_update",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.need_update",
+    "category": "Function",
+    "text": "need_update(repo::GitRepo)\n\nEquivalent to git update-index. Returns true if repo needs updating.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.objtype",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.objtype",
+    "category": "Function",
+    "text": "objtype(obj_type::Consts.OBJECT)\n\nReturns the type corresponding to the enum value.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.path",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.path",
+    "category": "Function",
+    "text": "LibGit2.path(repo::GitRepo)\n\nThe base file path of the repository repo.\n\nfor normal repositories, this will typically be the parent directory of the \".git\" directory (note: this may be different than the working directory, see workdir for more details).\nfor bare repositories, this is the location of the \"git\" files.\n\nSee also gitdir, workdir.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.peel",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.peel",
+    "category": "Function",
+    "text": "peel([T,] ref::GitReference)\n\nRecursively peel ref until an object of type T is obtained. If no T is provided, then ref will be peeled until an object other than a GitTag is obtained.\n\nA GitTag will be peeled to the object it references.\nA GitCommit will be peeled to a GitTree.\n\n\n\npeel([T,] obj::GitObject)\n\nRecursively peel obj until an object of type T is obtained. If no T is provided, then obj will be peeled until the type changes.\n\nA GitTag will be peeled to the object it references.\nA GitCommit will be peeled to a GitTree.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.posixpath",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.posixpath",
+    "category": "Function",
+    "text": "LibGit2.posixpath(path)\n\nStandardise the path string path to use POSIX separators.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.push",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.push",
+    "category": "Function",
+    "text": "push(rmt::GitRemote, refspecs; force::Bool=false, options::PushOptions=PushOptions())\n\nPush to the specified rmt remote git repository, using refspecs to determine which remote branch(es) to push to. The keyword arguments are:\n\nforce: if true, a force-push will occur, disregarding conflicts.\noptions: determines the options for the push, e.g. which proxy headers to use.\n\nnote: Note\nYou can add information about the push refspecs in two other ways: by setting an option in the repository's GitConfig (with push.default as the key) or by calling add_push!. Otherwise you will need to explicitly specify a push refspec in the call to push for it to have any effect, like so: LibGit2.push(repo, refspecs=[\"refs/heads/master\"]).\n\n\n\npush(repo::GitRepo; kwargs...)\n\nPushes updates to an upstream of repo.\n\nThe keyword arguments are:\n\nremote::AbstractString=\"origin\": the name of the upstream remote to push to.\nremoteurl::AbstractString=\"\": the URL of remote.\nrefspecs=AbstractString[]: determines properties of the push.\nforce::Bool=false: determines if the push will be a force push,  overwriting the remote branch.\npayload=Nullable{AbstractCredentials}(): provides credentials, if necessary, for instance if remote is a private repository.\n\nEquivalent to git push [<remoteurl>|<repo>] [<refspecs>].\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.push_refspecs",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.push_refspecs",
+    "category": "Function",
+    "text": "push_refspecs(rmt::GitRemote) -> Vector{String}\n\nGet the push refspecs for the specified rmt. These refspecs contain information about which branch(es) to push to.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.read_tree!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.read_tree!",
+    "category": "Function",
+    "text": "LibGit2.read_tree!(idx::GitIndex, tree::GitTree)\nLibGit2.read_tree!(idx::GitIndex, treehash::AbstractGitHash)\n\nRead the tree tree (or the tree pointed to by treehash in the repository owned by idx) into the index idx. The current index contents will be replaced.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.rebase!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.rebase!",
+    "category": "Function",
+    "text": "LibGit2.rebase!(repo::GitRepo, upstream::AbstractString=\"\", newbase::AbstractString=\"\")\n\nAttempt an automatic merge rebase of the current branch, from upstream if provided, or otherwise from the upstream tracking branch. newbase is the branch to rebase onto. By default this is upstream.\n\nIf any conflicts arise which cannot be automatically resolved, the rebase will abort, leaving the repository and working tree in its original state, and the function will throw a GitError. This is roughly equivalent to the following command line statement:\n\ngit rebase --merge [<upstream>]\nif [ -d \".git/rebase-merge\" ]; then\n    git rebase --abort\nfi\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.ref_list",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.ref_list",
+    "category": "Function",
+    "text": "LibGit2.ref_list(repo::GitRepo) -> Vector{String}\n\nGet a list of all reference names in the repo repository.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.reftype",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.reftype",
+    "category": "Function",
+    "text": "LibGit2.reftype(ref::GitReference) -> Cint\n\nReturns a Cint corresponding to the type of ref:\n\n0 if the reference is invalid\n1 if the reference is an object id\n2 if the reference is symbolic\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.remotes",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.remotes",
+    "category": "Function",
+    "text": "LibGit2.remotes(repo::GitRepo)\n\nReturns a vector of the names of the remotes of repo.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.reset!",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.reset!",
+    "category": "Function",
+    "text": "Resets credentials for another use\n\n\n\nUpdates some entries, determined by the pathspecs, in the index from the target commit tree.\n\n\n\nSets the current head to the specified commit oid and optionally resets the index and working tree to match.\n\n\n\ngit reset [<committish>] [–] <pathspecs>... \n\n\n\nreset!(repo::GitRepo, id::GitHash, mode::Cint = Consts.RESET_MIXED)\n\nReset the repository repo to its state at id, using one of three modes set by mode:\n\nConsts.RESET_SOFT - move HEAD to id.\nConsts.RESET_MIXED - default, move HEAD to id and reset the index to id.\nConsts.RESET_HARD - move HEAD to id, reset the index to id, and discard all working changes.\n\nEquivalent to git reset [--soft | --mixed | --hard] <id>.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.restore",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.restore",
+    "category": "Function",
+    "text": "restore(s::State, repo::GitRepo)\n\nReturn a repository repo to a previous State s, for example the HEAD of a branch before a merge attempt. s can be generated using the snapshot function.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.revcount",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.revcount",
+    "category": "Function",
+    "text": "LibGit2.revcount(repo::GitRepo, commit1::AbstractString, commit2::AbstractString)\n\nList the number of revisions between commit1 and commit2 (committish OIDs in string form). Since commit1 and commit2 may be on different branches, revcount performs a \"left-right\" revision list (and count), returning a tuple of Ints - the number of left and right commits, respectively. A left (or right) commit refers to which side of a symmetric difference in a tree the commit is reachable from.\n\nEquivalent to git rev-list --left-right --count <commit1> <commit2>.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.set_remote_url",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.set_remote_url",
+    "category": "Function",
+    "text": "set_remote_url(repo::GitRepo, url::AbstractString; remote::AbstractString=\"origin\")\n\nSet the url for remote for the git repository repo. The default name of the remote is \"origin\".\n\n\n\nset_remote_url(path::AbstractString, url::AbstractString; remote::AbstractString=\"origin\")\n\nSet the url for remote for the git repository located at path. The default name of the remote is \"origin\".\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.shortname",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.shortname",
+    "category": "Function",
+    "text": "LibGit2.shortname(ref::GitReference)\n\nReturns a shortened version of the name of ref that's \"human-readable\".\n\njulia> repo = LibGit2.GitRepo(path_to_repo);\n\njulia> branch_ref = LibGit2.head(repo);\n\njulia> LibGit2.name(branch_ref)\n\"refs/heads/master\"\n\njulia> LibGit2.shortname(branch_ref)\n\"master\"\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.snapshot",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.snapshot",
+    "category": "Function",
+    "text": "snapshot(repo::GitRepo) -> State\n\nTake a snapshot of the current state of the repository repo, storing the current HEAD, index, and any uncommitted work. The output State can be used later during a call to restore to return the repository to the snapshotted state.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.status",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.status",
+    "category": "Function",
+    "text": "LibGit2.status(repo::GitRepo, path::String)\n\nLookup the status of the file at path in the git repository repo. For instance, this can be used to check if the file at path has been modified and needs to be staged and committed.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.tag_create",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.tag_create",
+    "category": "Function",
+    "text": "LibGit2.tag_create(repo::GitRepo, tag::AbstractString, commit; kwargs...)\n\nCreate a new git tag tag (e.g. \"v0.5\") in the repository repo, at the commit commit.\n\nThe keyword arguments are:\n\nmsg::AbstractString=\"\": the message for the tag.\nforce::Bool=false: if true, existing references will be overwritten.\nsig::Signature=Signature(repo): the tagger's signature.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.tag_delete",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.tag_delete",
+    "category": "Function",
+    "text": "LibGit2.tag_delete(repo::GitRepo, tag::AbstractString)\n\nRemove the git tag tag from the repository repo.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.tag_list",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.tag_list",
+    "category": "Function",
+    "text": "LibGit2.tag_list(repo::GitRepo) -> Vector{String}\n\nGet a list of all tags in the git repository repo.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.target",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.target",
+    "category": "Function",
+    "text": "LibGit2.target(tag::GitTag)\n\nThe GitHash of the target object of tag.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.treewalk",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.treewalk",
+    "category": "Function",
+    "text": "Traverse the entries in a tree and its subtrees in post or pre order.\n\nFunction parameter should have following signature:\n\n(Cstring, Ptr{Void}, Ptr{Void}) -> Cint\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.upstream",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.upstream",
+    "category": "Function",
+    "text": "upstream(ref::GitReference) -> Nullable{GitReference}\n\nDetermine if the branch containing ref has a specified upstream branch.\n\nupstream returns a Nullable, which will be null if the requested branch does not have an upstream counterpart. If the upstream branch does exist, the Nullable contains a GitReference to the upstream branch.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.url",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.url",
+    "category": "Function",
+    "text": "url(rmt::GitRemote)\n\nGet the URL of a remote git repository.\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.with",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.with",
+    "category": "Function",
+    "text": "Resource management helper function\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Base.LibGit2.workdir",
+    "page": "Base.LibGit2",
+    "title": "Base.LibGit2.workdir",
+    "category": "Function",
+    "text": "LibGit2.workdir(repo::GitRepo)\n\nThe location of the working directory of repo. This will throw an error for bare repositories.\n\nnote: Note\nThis will typically be the parent directory of gitdir(repo), but can be different in some cases: e.g. if either the core.worktree configuration variable or the GIT_WORK_TREE environment variable is set.\n\nSee also gitdir, path\n\n\n\n"
+},
+
+{
+    "location": "devdocs/libgit2.html#Functionality-1",
+    "page": "Base.LibGit2",
+    "title": "Functionality",
+    "category": "section",
+    "text": "Some of this documentation assumes some prior knowledge of the libgit2 API. For more information on some of the objects and methods referenced here, consult the upstream libgit2 API reference.Base.LibGit2.AbstractCredentials\nBase.LibGit2.Buffer\nBase.LibGit2.CachedCredentials\nBase.LibGit2.CheckoutOptions\nBase.LibGit2.CloneOptions\nBase.LibGit2.DiffDelta\nBase.LibGit2.DiffFile\nBase.LibGit2.DiffOptionsStruct\nBase.LibGit2.FetchHead\nBase.LibGit2.FetchOptions\nBase.LibGit2.GitBlob\nBase.LibGit2.GitCommit\nBase.LibGit2.GitHash\nBase.LibGit2.GitObject\nBase.LibGit2.GitRemote\nBase.LibGit2.GitRemoteAnon\nBase.LibGit2.GitRepo\nBase.LibGit2.GitRepoExt\nBase.LibGit2.GitShortHash\nBase.LibGit2.GitSignature\nBase.LibGit2.GitStatus\nBase.LibGit2.GitTag\nBase.LibGit2.GitTree\nBase.LibGit2.IndexEntry\nBase.LibGit2.IndexTime\nBase.LibGit2.MergeOptions\nBase.LibGit2.ProxyOptions\nBase.LibGit2.PushOptions\nBase.LibGit2.RebaseOperation\nBase.LibGit2.RebaseOptions\nBase.LibGit2.RemoteCallbacks\nBase.LibGit2.SSHCredentials\nBase.LibGit2.SignatureStruct\nBase.LibGit2.StatusEntry\nBase.LibGit2.StatusOptions\nBase.LibGit2.StrArrayStruct\nBase.LibGit2.TimeStruct\nBase.LibGit2.UserPasswordCredentials\nBase.LibGit2.add_fetch!\nBase.LibGit2.add_push!\nBase.LibGit2.addblob!\nBase.LibGit2.authors\nBase.LibGit2.branch\nBase.LibGit2.branch!\nBase.LibGit2.checkout!\nBase.LibGit2.checkused!\nBase.LibGit2.clone\nBase.LibGit2.commit\nBase.LibGit2.create_branch\nBase.LibGit2.credentials_callback\nBase.LibGit2.credentials_cb\nBase.LibGit2.default_signature\nBase.LibGit2.delete_branch\nBase.LibGit2.diff_files\nBase.LibGit2.fetch\nBase.LibGit2.fetch_refspecs\nBase.LibGit2.fetchhead_foreach_cb\nBase.LibGit2.ffmerge!\nBase.LibGit2.fullname\nBase.LibGit2.get_creds!\nBase.LibGit2.gitdir\nBase.LibGit2.head\nBase.LibGit2.head!\nBase.LibGit2.head_oid\nBase.LibGit2.headname\nBase.LibGit2.init\nBase.LibGit2.is_ancestor_of\nBase.LibGit2.isbinary\nBase.LibGit2.iscommit\nBase.LibGit2.isdiff\nBase.LibGit2.isdirty\nBase.LibGit2.isorphan\nBase.LibGit2.lookup_branch\nBase.LibGit2.mirror_callback\nBase.LibGit2.mirror_cb\nBase.LibGit2.name\nBase.LibGit2.need_update\nBase.LibGit2.objtype\nBase.LibGit2.path\nBase.LibGit2.peel\nBase.LibGit2.posixpath\nBase.LibGit2.push\nBase.LibGit2.push_refspecs\nBase.LibGit2.read_tree!\nBase.LibGit2.rebase!\nBase.LibGit2.ref_list\nBase.LibGit2.reftype\nBase.LibGit2.remotes\nBase.LibGit2.reset!\nBase.LibGit2.restore\nBase.LibGit2.revcount\nBase.LibGit2.set_remote_url\nBase.LibGit2.shortname\nBase.LibGit2.snapshot\nBase.LibGit2.status\nBase.LibGit2.tag_create\nBase.LibGit2.tag_delete\nBase.LibGit2.tag_list\nBase.LibGit2.target\nBase.LibGit2.treewalk\nBase.LibGit2.upstream\nBase.LibGit2.url\nBase.LibGit2.with\nBase.LibGit2.workdir"
+},
+
+{
     "location": "devdocs/backtraces.html#",
     "page": "Reporting and analyzing crashes (segfaults)",
     "title": "Reporting and analyzing crashes (segfaults)",
@@ -19397,7 +20269,7 @@ var documenterSearchIndex = {"docs": [
     "page": "gdb debugging tips",
     "title": "Useful Julia variables for Inspecting",
     "category": "section",
-    "text": "While the addresses of many variables, like singletons, can be be useful to print for many failures, there are a number of additional variables (see julia.h for a complete list) that are even more useful.(when in jl_apply_generic) f->linfo and jl_uncompress_ast(f->linfo, f->linfo->ast) :: for figuring out a bit about the call-stack\njl_lineno and jl_filename :: for figuring out what line in a test to go start debugging from (or figure out how far into a file has been parsed)\n$1 :: not really a variable, but still a useful shorthand for referring to the result of the last gdb command (such as print)\njl_options :: sometimes useful, since it lists all of the command line options that were successfully parsed\njl_uv_stderr :: because who doesn't like to be able to interact with stdio"
+    "text": "While the addresses of many variables, like singletons, can be be useful to print for many failures, there are a number of additional variables (see julia.h for a complete list) that are even more useful.(when in jl_apply_generic) mfunc and jl_uncompress_ast(mfunc->def, mfunc->code) :: for figuring out a bit about the call-stack\njl_lineno and jl_filename :: for figuring out what line in a test to go start debugging from (or figure out how far into a file has been parsed)\n$1 :: not really a variable, but still a useful shorthand for referring to the result of the last gdb command (such as print)\njl_options :: sometimes useful, since it lists all of the command line options that were successfully parsed\njl_uv_stderr :: because who doesn't like to be able to interact with stdio"
 },
 
 {

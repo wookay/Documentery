@@ -76,8 +76,8 @@ julia> a / b
   [1m[94m(_)[0m     | [1m[91m(_)[0m [1m[95m(_)[0m    |  Documentation: http://docs.julialang.org
    [0m_ _   _| |_  __ _[0m   |  Type "?help" for help.
   [0m| | | | | | |/ _` |[0m  |
-  [0m| | |_| | | | (_| |[0m  |  Version 0.6.0-pre.alpha.208 (2017-03-21 20:11 UTC)
- [0m_/ |\__'_|_|_|\__'_|[0m  |  Commit 003a14fd21* (0 days old master)
+  [0m| | |_| | | | (_| |[0m  |  Version 0.6.0-pre.beta.134 (2017-04-14 16:54 UTC)
+ [0m_/ |\__'_|_|_|\__'_|[0m  |  Commit 67e3b50bc4* (2 days old master)
 [0m|__/[0m                   |  x86_64-apple-darwin16.4.0
 
 julia>
@@ -164,7 +164,7 @@ b = 2; # Semi-colons don't affect script doctests.
 julia> f(x) = (sleep(x); x)
 f (generic function with 1 method)
 
-  0.140545 seconds (16.07 k allocations: 799.265 KiB)
+  0.107303 seconds (219 allocations: 15.573 KiB)
 julia> @time f(0.1);
 ```
 

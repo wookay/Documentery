@@ -26,7 +26,7 @@ func(x)
 [`T`](functions.md#Mod.T)
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L14-L18' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L14-L18' class='documenter-source'>source</a><br>
 
 <a id='Mod.T' href='#Mod.T'>#</a>
 **`Mod.T`** &mdash; *Type*.
@@ -40,7 +40,7 @@ T
 [`func(x)`](functions.md#Mod.func-Tuple{Any})
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L21-L25' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L21-L25' class='documenter-source'>source</a><br>
 
 <a id='ccall' href='#ccall'>#</a>
 **`ccall`** &mdash; *Keyword*.
@@ -58,7 +58,7 @@ Note that the argument type tuple must be a literal tuple, and not a tuple-value
 Each `ArgumentValue` to the `ccall` will be converted to the corresponding `ArgumentType`, by automatic insertion of calls to `unsafe_convert(ArgumentType, cconvert(ArgumentType, ArgumentValue))`. (See also the documentation for each of these functions for further details.) In most cases, this simply results in a call to `convert(ArgumentType, ArgumentValue)`.
 
 
-<a target='_blank' href='https://github.com/JuliaLang/julia/tree/003a14fd215954581147df49d37e7c05fb826771/base/docs/basedocs.jl#L557-L572' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaLang/julia/tree/67e3b50bc4ffd35ff30e73224554d0c8338c3e98/base/docs/basedocs.jl#L557-L572' class='documenter-source'>source</a><br>
 
 <a id='for' href='#for'>#</a>
 **`for`** &mdash; *Keyword*.
@@ -74,7 +74,7 @@ end
 ```
 
 
-<a target='_blank' href='https://github.com/JuliaLang/julia/tree/003a14fd215954581147df49d37e7c05fb826771/base/docs/basedocs.jl#L388-L395' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaLang/julia/tree/67e3b50bc4ffd35ff30e73224554d0c8338c3e98/base/docs/basedocs.jl#L388-L395' class='documenter-source'>source</a><br>
 
 <a id='while' href='#while'>#</a>
 **`while`** &mdash; *Keyword*.
@@ -91,7 +91,7 @@ end
 ```
 
 
-<a target='_blank' href='https://github.com/JuliaLang/julia/tree/003a14fd215954581147df49d37e7c05fb826771/base/docs/basedocs.jl#L398-L408' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaLang/julia/tree/67e3b50bc4ffd35ff30e73224554d0c8338c3e98/base/docs/basedocs.jl#L398-L408' class='documenter-source'>source</a><br>
 
 <a id='Base.@time' href='#Base.@time'>#</a>
 **`Base.@time`** &mdash; *Macro*.
@@ -118,7 +118,7 @@ julia> @time begin
 ```
 
 
-<a target='_blank' href='https://github.com/JuliaLang/julia/tree/003a14fd215954581147df49d37e7c05fb826771/base/util.jl#L212-L232' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaLang/julia/tree/67e3b50bc4ffd35ff30e73224554d0c8338c3e98/base/util.jl#L212-L232' class='documenter-source'>source</a><br>
 
 <a id='Base.@assert' href='#Base.@assert'>#</a>
 **`Base.@assert`** &mdash; *Macro*.
@@ -132,7 +132,7 @@ julia> @time begin
 Throw an `AssertionError` if `cond` is `false`. Preferred syntax for writing assertions. Message `text` is optionally displayed upon assertion failure.
 
 
-<a target='_blank' href='https://github.com/JuliaLang/julia/tree/003a14fd215954581147df49d37e7c05fb826771/base/docs/helpdb/Base.jl#L1746-L1751' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaLang/julia/tree/67e3b50bc4ffd35ff30e73224554d0c8338c3e98/base/docs/helpdb/Base.jl#L1746-L1751' class='documenter-source'>source</a><br>
 
 
 <a id='Foo-1'></a>
@@ -293,7 +293,7 @@ julia> type T
        end
 
 julia> x = T(1, [1])
-##repl-#684.T(1, [1])
+##repl-#659.T(1, [1])
 
 julia> x.y
 1-element Array{Int64,1}:
@@ -351,7 +351,7 @@ ERROR: UndefVarError: w not defined
 `AutoDocs` module.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L29' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L29' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.K' href='#AutoDocs.K'>#</a>
 **`AutoDocs.K`** &mdash; *Constant*.
@@ -361,7 +361,7 @@ ERROR: UndefVarError: w not defined
 Constant `K`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L42' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L42' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.T' href='#AutoDocs.T'>#</a>
 **`AutoDocs.T`** &mdash; *Type*.
@@ -371,7 +371,7 @@ Constant `K`.
 Type `T`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L45' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L45' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.f-Tuple{Any}' href='#AutoDocs.f-Tuple{Any}'>#</a>
 **`AutoDocs.f`** &mdash; *Method*.
@@ -381,7 +381,7 @@ Type `T`.
 Function `f`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L39' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L39' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.@m-Tuple{}' href='#AutoDocs.@m-Tuple{}'>#</a>
 **`AutoDocs.@m`** &mdash; *Macro*.
@@ -391,7 +391,7 @@ Function `f`.
 Macro `@m`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L48' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L48' class='documenter-source'>source</a><br>
 
 
 <a id='Functions,-Modules,-and-Macros-1'></a>
@@ -406,7 +406,7 @@ Macro `@m`.
 Module `A`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L51' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L51' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.A.f-Tuple{Any}' href='#AutoDocs.A.f-Tuple{Any}'>#</a>
 **`AutoDocs.A.f`** &mdash; *Method*.
@@ -416,7 +416,7 @@ Module `A`.
 Function `A.f`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L53' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L53' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.A.@m-Tuple{}' href='#AutoDocs.A.@m-Tuple{}'>#</a>
 **`AutoDocs.A.@m`** &mdash; *Macro*.
@@ -426,7 +426,7 @@ Function `A.f`.
 Macro `B.@m`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L62' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L62' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.B' href='#AutoDocs.B'>#</a>
 **`AutoDocs.B`** &mdash; *Module*.
@@ -436,7 +436,7 @@ Macro `B.@m`.
 Module `B`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L66' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L66' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.B.f-Tuple{Any}' href='#AutoDocs.B.f-Tuple{Any}'>#</a>
 **`AutoDocs.B.f`** &mdash; *Method*.
@@ -446,7 +446,7 @@ Module `B`.
 Function `B.f`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L68' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L68' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.B.@m-Tuple{}' href='#AutoDocs.B.@m-Tuple{}'>#</a>
 **`AutoDocs.B.@m`** &mdash; *Macro*.
@@ -456,7 +456,7 @@ Function `B.f`.
 Macro `B.@m`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L77' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L77' class='documenter-source'>source</a><br>
 
 
 <a id='Constants-and-Types-1'></a>
@@ -471,7 +471,7 @@ Macro `B.@m`.
 Constant `A.K`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L56' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L56' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.A.T' href='#AutoDocs.A.T'>#</a>
 **`AutoDocs.A.T`** &mdash; *Type*.
@@ -481,7 +481,7 @@ Constant `A.K`.
 Type `B.T`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L59' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L59' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.B.K' href='#AutoDocs.B.K'>#</a>
 **`AutoDocs.B.K`** &mdash; *Constant*.
@@ -491,7 +491,7 @@ Type `B.T`.
 Constant `B.K`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L71' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L71' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.B.T' href='#AutoDocs.B.T'>#</a>
 **`AutoDocs.B.T`** &mdash; *Type*.
@@ -501,7 +501,7 @@ Constant `B.K`.
 Type `B.T`.
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/make.jl#L74' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/make.jl#L74' class='documenter-source'>source</a><br>
 
 
 <a id='Autodocs-by-Page-1'></a>
@@ -530,7 +530,7 @@ Links:
 [^footnote]: Footnote contents. [^footnote]
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/a.jl#L2-L21' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/pages/a.jl#L2-L21' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.Pages.f-Tuple{Any,Any}' href='#AutoDocs.Pages.f-Tuple{Any,Any}'>#</a>
 **`AutoDocs.Pages.f`** &mdash; *Method*.
@@ -551,7 +551,7 @@ Links:
   * [`f(::Any, ::Any, ::Any)`](functions.md#AutoDocs.Pages.f-Tuple{Any,Any,Any})
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/b.jl#L2-L16' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/pages/b.jl#L2-L16' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.Pages.f-Tuple{Any,Any,Any}' href='#AutoDocs.Pages.f-Tuple{Any,Any,Any}'>#</a>
 **`AutoDocs.Pages.f`** &mdash; *Method*.
@@ -572,7 +572,7 @@ Links:
   * [`f(::Any, ::Any, ::Any)`](functions.md#AutoDocs.Pages.f-Tuple{Any,Any,Any})
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/c.jl#L2-L16' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/pages/c.jl#L2-L16' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.Pages.T' href='#AutoDocs.Pages.T'>#</a>
 **`AutoDocs.Pages.T`** &mdash; *Type*.
@@ -593,7 +593,7 @@ Links:
   * [`f(::Any, ::Any, ::Any)`](functions.md#AutoDocs.Pages.f-Tuple{Any,Any,Any})
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/d.jl#L2-L16' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/pages/d.jl#L2-L16' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.Pages.T-Tuple{Any,Any}' href='#AutoDocs.Pages.T-Tuple{Any,Any}'>#</a>
 **`AutoDocs.Pages.T`** &mdash; *Method*.
@@ -617,7 +617,7 @@ Links:
   * [`f(::Any, ::Any, ::Any)`](functions.md#AutoDocs.Pages.f-Tuple{Any,Any,Any})
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/d.jl#L39-L56' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/pages/d.jl#L39-L56' class='documenter-source'>source</a><br>
 
 <a id='AutoDocs.Pages.T-Tuple{Any}' href='#AutoDocs.Pages.T-Tuple{Any}'>#</a>
 **`AutoDocs.Pages.T`** &mdash; *Method*.
@@ -640,7 +640,7 @@ Links:
   * [`f(::Any, ::Any, ::Any)`](functions.md#AutoDocs.Pages.f-Tuple{Any,Any,Any})
 
 
-<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/8abc224184fc6d5d2ef778fe0dc44ffb959a624b/test/examples/pages/d.jl#L20-L36' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/JuliaDocs/Documenter.jl/tree/1f7f090d3f1b61fa4fb304f5d65cdbd9c7737fa7/test/examples/pages/d.jl#L20-L36' class='documenter-source'>source</a><br>
 
 
 A footnote reference [^footnote].
