@@ -104,12 +104,12 @@ require(['jquery', 'headroom'], function($, Headroom) {
             navtoc.toggleClass('show');
         });
         $("div.topbar a.btn").click(function(ev) {
-            ev.preventDefault();
             navtoc.toggleClass('show');
             if (navtoc.hasClass('show')) {
                 var title = $("div.topbar span").text();
                 $("nav.toc ul li a:contains('" + title + "')").focus();
             }
+            ev.preventDefault();
         });
         $("article#docs").bind('click', function() {
             if (navtoc.hasClass('show')) {
