@@ -496,9 +496,10 @@ article section.docstring a.source-link {
     }
 
     article {
+        width: 90%;
         padding-left: 0.9em;
         padding-right: 0.9em;
-        margin-left: 0;
+        margin: 0;
         overflow-wrap: break-word;
     }
 
