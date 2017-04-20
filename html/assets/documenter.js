@@ -103,10 +103,10 @@ require(['jquery', 'headroom'], function($, Headroom) {
         $("nav.toc li.current a.toctext").click(function() {
             navtoc.toggleClass('show');
         });
-        $("div.topbar a.btn").click(function(ev) {
+        $("div#topbar a.btn").click(function(ev) {
             navtoc.toggleClass('show');
             if (navtoc.hasClass('show')) {
-                var title = $("div.topbar span").text();
+                var title = $("div#topbar span").text();
                 $("nav.toc ul li a:contains('" + title + "')").focus();
             }
             ev.preventDefault();
@@ -116,8 +116,8 @@ require(['jquery', 'headroom'], function($, Headroom) {
                 navtoc.toggleClass('show');
             }
         });
-        if ($("div.topbar").css('display') == 'block') {
-            var headroom = new Headroom(document.querySelector("div.topbar"), {"tolerance": {"down": 10}});
+        if ($("div#topbar").css('display') == 'block') {
+            var headroom = new Headroom(document.querySelector("div#topbar"), {"tolerance": {"down": 10}});
             headroom.init();
         }
     })

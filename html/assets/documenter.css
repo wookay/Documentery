@@ -264,7 +264,7 @@ nav.toc li.current > .toctext {
     background-color: white;
 }
 
-div.topbar {
+div#topbar {
     display: none;
 }
 
@@ -434,7 +434,7 @@ article section.docstring a.source-link {
 }
 
 @media only screen and (max-width: 768px) {
-    div.topbar {
+    div#topbar {
         display: block; /* is mobile */
         position: fixed;
         width: 100%;
@@ -449,26 +449,26 @@ article section.docstring a.source-link {
         transition-duration: 0.3s;
     }
 
-    div.topbar span {
+    div#topbar span {
         position: fixed;
         width: 80%;
-        height: 2.2em;
+        height: 1.8em;
         overflow: hidden;
-        margin-top: 0.7em;
+        margin-top: 0.6em;
         margin-left: 1em;
     }
 
-    div.topbar a.fa-bars {
+    div#topbar a.fa-bars {
         float: right;
         padding: 0.4em 0.5em 0.2em 1em; /* top right bottom left */
         font-size: x-large;
     }
 
-    div.topbar a.fa-bars:visited {
+    div#topbar a.fa-bars:visited {
         color: #3091d1;
     }
 
-    div.topbar.headroom--unpinned.headroom--not-top.headroom--not-bottom {
+    div#topbar.headroom--unpinned.headroom--not-top.headroom--not-bottom {
         top: -3em;
         -webkit-transition-property: top; /* Safari */
         -webkit-transition-duration: 0.7s; /* Safari */
