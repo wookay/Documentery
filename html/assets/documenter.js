@@ -120,7 +120,7 @@ require(['jquery', 'headroom'], function($, Headroom) {
             }
         });
         if ($("article > header div#topbar").css('display') == 'block') {
-            var headroom = new Headroom(document.querySelector("article > header div#topbar"), {"tolerance": {"down": 10}});
+            var headroom = new Headroom(document.querySelector("article > header div#topbar"), {"tolerance": {"up": 10, "down": 10}});
             headroom.init();
         }
     })
