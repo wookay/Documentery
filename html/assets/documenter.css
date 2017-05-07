@@ -21,7 +21,12 @@ body, input {
 }
 
 pre, code {
-  font-family: 'Ubuntu Mono', Monaco, courier, monospace;
+  font-family: 'Roboto Mono', Monaco, courier, monospace;
+  font-size: 0.90em;
+}
+
+pre code {
+  font-size: 1em;
 }
 
 a {
@@ -516,8 +521,8 @@ article section.docstring a.source-link {
     }
 
     article table {
-        table-layout: fixed;
-        width: 99%;
+        overflow-x: auto;
+        display: block;
     }
 
     article div.MathJax_Display {
